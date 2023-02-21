@@ -10,8 +10,8 @@ public class DBContext {
 		Connection conn = null;
 		try {
 			Class.forName(driverName);
-			String url = "jdbc:sqlserver://" + serverName + ":" + port + ";databasenName=" + 
-					databaseName + ";user=" + user + ";password=" + password + ";encrypt=true;trustServerCertificate=true;";
+			String url = "jdbc:sqlserver://" + serverName +":" + port + ";databaseName=" + databaseName + 
+					";user=" + user + ";password=" + password + ";encrypt=true;trustServerCertificate=true;";
 			conn = DriverManager.getConnection(url);
 		} catch(SQLException | ClassNotFoundException e) {
 			System.out.println("Loi ket noi!");
@@ -25,8 +25,4 @@ public class DBContext {
 	private static final String databaseName = "QLHQ";
 	private static final String user = "sa";
 	private static final String password = "123456";
-	
-	public static void main(String[] args) {
-		System.out.println(getConnection());
-	}
 }
