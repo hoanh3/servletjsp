@@ -13,13 +13,14 @@ public class Product {
 	private Date updateAt;
 	private int categoryId;
 	private int delete;
+	private int availability;
 	
 	public Product() {
 		super();
 	}
-	
+
 	public Product(int id, String title, int price, int discount, String thumbnail, String description, Date createAt,
-			Date updateAt, int categoryId, int delete) {
+			Date updateAt, int categoryId, int delete, int availability) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -31,6 +32,7 @@ public class Product {
 		this.updateAt = updateAt;
 		this.categoryId = categoryId;
 		this.delete = delete;
+		this.availability = availability;
 	}
 
 	public int getId() {
@@ -113,12 +115,20 @@ public class Product {
 		this.delete = delete;
 	}
 
+	public int getAvailability() {
+		return availability;
+	}
+
+	public void setAvailability(int availability) {
+		this.availability = availability;
+	}
+
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", title=" + title + ", price=" + price + ", discount=" + discount + ", thumbnail="
 				+ thumbnail + ", description=" + description + ", createAt=" + createAt + ", updateAt=" + updateAt
-				+ ", categoryId=" + categoryId + ", delete=" + delete + "]";
+				+ ", categoryId=" + categoryId + ", delete=" + delete + ", availability=" + availability + "]";
 	}
-	
+
 	
 }

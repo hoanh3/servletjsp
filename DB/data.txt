@@ -1,0 +1,53 @@
+-- Insert rows into table 'category' in schema '[dbo]'
+INSERT INTO [dbo].[category]
+( -- Columns to insert data into
+ [name], [thumbnail]
+)
+VALUES
+( -- First row: values for the columns in the list above
+    N'vegetables', N'cat-3.jpg'
+),( -- First row: values for the columns in the list above
+    N'dried fruits', N'cat-2.jpg'
+),( -- First row: values for the columns in the list above
+    N'drink fruits', N'cat-4.jpg'
+),( -- First row: values for the columns in the list above
+    N'fresh fruits', N'cat-1.jpg'
+),( -- First row: values for the columns in the list above
+    N'fresh meats', N'cat-5.jpg'
+)
+-- Add more rows here
+GO
+
+-- Insert rows into table 'product' in schema '[dbo]'
+INSERT INTO [dbo].[product]
+( -- Columns to insert data into
+    [title]
+    ,[price]
+    ,[discount]
+    ,[thumbnail]
+    ,[description]
+    ,[create_at]
+    ,[update_at]
+    ,[category_id]
+    ,[delete]
+    ,[availability]
+)
+VALUES
+( 
+    N'guava fruit', 50000, 30000, N'product-3.jpg', N'Originating from the tropical region of Central America, guava gradually became more familiar in Asia in the 17th century thanks to the good taste and lots of benefits for health. In Vietnam, you can see guava in different colors like green or purple and different sizes up to 13 cm in diameter and can enjoy it in different ways. Depending on each type and season, guava may have a sour-sweet to very sweet taste.', '20230224', '20230224', 4, 1, 1
+), ( 
+    N'banana fruit', 20000, 15000, N'product-2.jpg', N'Vietnam homeland has many kinds of sweet and aromatic fruits, one of which is banana, a familiar specialty of the countryside. Speaking of bananas, no one can forget its distinctive shape, color and taste. This fruit is a domesticated fruit for a long time with a variety of types and names. The genre of bananas grown in Vietnam can range up to hundreds.', '20230224', '20230224', 4, 1, 1
+), ( 
+    N'mango fruit', 30000, 28000, N'product-6.jpg', N'“The king of the fruits," mango fruit is one of the most popular, nutritionally rich fruits with unique flavor, fragrance, taste, and heath promoting qualities, making it numero-uno among new functional foods, often labeled as “super fruits."Mango is one of the delicious seasonal fruits grown in the tropics. The tree is believed to be originating in the sub-Himalayan plains of the Indian subcontinent. Botanically, this exotic fruit belongs to the family of Anacardiaceae, a family that also includes numerous species of tropical fruiting trees in the flowering plants such as cashew, pistachio.', '20230224', '20230224', 4, 1, 1
+), ( 
+    N'watermelon fruit', 40000, 35000, N'product-7.jpg', N'Worldwide watermelon has been considered by tradition to be a sweet but nonnutritional fruit. Nowadays, watermelon is considered as “functional food” and a popular fruit endowed with important nutritional and bioactive compounds providing several health benefits. Watermelon contributes substantially to the antioxidant activity level of human diets. Both watermelon seeds and rind are edible and rich in nutrient and bioactive compounds, providing also considerable medicinal, health, and economic benefits. Watermelon fruit quality depends on the interaction of genetic, climatic, growing, and postharvest factors. Available information from numerous studies have illuminated the therapeutic role of watermelon against life-threatening metabolic syndromes, particularly chronic diseases, such as cancer, cardiovascular disease, obesity, and diabetes. Recently, the beneficial effects of watermelon on health in the human model are being proved. Still there is a need for further studies to explore other attractive properties of watermelon.', '20230224', '20230224', 4, 1, 1
+), ( 
+    N'apple fruit', 18000, 15000, N'product-8.jpg', N'An apple is an edible fruit produced by an apple tree (Malus domestica). Apple trees are cultivated worldwide and are the most widely grown species in the genus Malus. The tree originated in Central Asia, where its wild ancestor, Malus sieversii, is still found today. Apples have been grown for thousands of years in Asia and Europe and were brought to North America by European colonists. Apples have religious and mythological significance in many cultures, including Norse, Greek, and European Christian tradition.', '20230224', '20230224', 4, 1, 1
+), ( 
+    N'blueberry fruit', 50000, 30000, N'product-4.jpg', N'Blueberries are a widely distributed and widespread group of perennial flowering plants with blue or purple berries. They are classified in the section Cyanococcus within the genus Vaccinium. Vaccinium also includes cranberries, bilberries, huckleberries and Madeira blueberries.[1] Commercial blueberries—both wild (lowbush) and cultivated (highbush)—are all native to North America. The highbush varieties were introduced into Europe during the 1930s.[2] Blueberries are usually prostrate shrubs that can vary in size from 10 centimeters (4 inches) to 4 meters (13 feet) in height. In commercial production of blueberries, the species with small, pea-size berries growing on low-level bushes are known as "lowbush blueberries" (synonymous with "wild"), while the species with larger berries growing on taller, cultivated bushes are known as "highbush blueberries". Canada is the leading producer of lowbush blueberries, while the United States produces some 40% of the world supply of highbush blueberries.', '20230224', '20230224', 4, 1, 1
+), ( 
+    N'raisin packet', 100000, 90000, N'product-9.jpg', N'Made with nothing but grapes and California sunshine. Sun-Maid’s timeless and trusted goodness has been a go-to snack for kids and grown-up kids alike since 1912. Simple, better-for-you and versatile snacks that both stand the test of time and add little moments of sunshine to your day. From childhood to adulthood and generation to generation, Sun-Maid snacks have grown up with you. And while some things change, our ingredients haven’t—they’re real, minimally processed and consistently good.', '20230224', '20230224', 2, 1, 1
+), ( 
+    N'orange juice', 48000, 45000, N'product-11.jpg', N'Orange juice is a liquid extract of the orange tree fruit, produced by squeezing or reaming oranges. It comes in several different varieties, including blood orange, navel oranges, valencia orange, clementine, and tangerine. As well as variations in oranges used, some varieties include differing amounts of juice vesicles, known as "pulp" in American English, and "(juicy) bits" in British English. These vesicles contain the juice of the orange and can be left in or removed during the manufacturing process. How juicy these vesicles are depend upon many factors, such as species, variety, and season. In American English, the beverage name is often abbreviated as "OJ".', '20230224', '20230224', 3, 1, 1
+)
+GO

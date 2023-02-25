@@ -1,0 +1,15 @@
+.text-decoration {
+	text-decoration: line-through;
+	text-decoration-color: #333333;
+	color: #333333;
+}
+
+.d-flex {
+	display: flex;
+	justify-content: center;
+	color: red;
+}
+
+.t-capitalize {
+    text-transform: capitalize;
+}

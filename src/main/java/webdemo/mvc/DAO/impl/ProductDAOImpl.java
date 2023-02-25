@@ -20,8 +20,18 @@ public class ProductDAOImpl implements ProductDAO{
 	@Override
 	public List<Product> getAll() {
 		List<Product> listProducts = new ArrayList<>();
-		String query = "SELECT [id],[title],[price],[discount],[thumbnail],[description],[create_at]," +
-						"[update_at],[category_id],[delete] FROM [dbo].[product]";
+		String query = "SELECT [id]"
+				+ "      ,[title]"
+				+ "      ,[price]"
+				+ "      ,[discount]"
+				+ "      ,[thumbnail]"
+				+ "      ,[description]"
+				+ "      ,[create_at]"
+				+ "      ,[update_at]"
+				+ "      ,[category_id]"
+				+ "      ,[delete]"
+				+ "      ,[availability]"
+				+ "FROM [QLHQ].[dbo].[product]";
 		
 		try {
 			connection = DBContext.getConnection();
@@ -38,12 +48,14 @@ public class ProductDAOImpl implements ProductDAO{
 				Date updateAt = resultSet.getDate(8);
 				int categoryId = resultSet.getInt(9);
 				int delete = resultSet.getInt(10);
-				Product product = new Product(id, title, price, discount, thumbnail, description, createAt, updateAt, categoryId, delete);
+				int availability = resultSet.getInt(11);
+				Product product = new Product(id, title, price, discount, thumbnail, description, createAt, updateAt, categoryId, delete, availability);
 				listProducts.add(product);
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
-			System.out.println("loi");
+			System.out.println("loi productDao");
+			e.printStackTrace();
 		}
 		return listProducts;
 	}
