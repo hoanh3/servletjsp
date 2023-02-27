@@ -9,6 +9,7 @@ import java.util.List;
 
 import webdemo.mvc.DAO.ProductDAO;
 import webdemo.mvc.context.DBContext;
+import webdemo.mvc.models.Category;
 import webdemo.mvc.models.Product;
 
 public class ProductDAOImpl implements ProductDAO{
@@ -20,18 +21,9 @@ public class ProductDAOImpl implements ProductDAO{
 	@Override
 	public List<Product> getAll() {
 		List<Product> listProducts = new ArrayList<>();
-		String query = "SELECT [id]"
-				+ "      ,[title]"
-				+ "      ,[price]"
-				+ "      ,[discount]"
-				+ "      ,[thumbnail]"
-				+ "      ,[description]"
-				+ "      ,[create_at]"
-				+ "      ,[update_at]"
-				+ "      ,[category_id]"
-				+ "      ,[delete]"
-				+ "      ,[availability]"
-				+ "FROM [QLHQ].[dbo].[product]";
+		String query = "SELECT P.*, CAT.*\r\n"
+				+ "FROM dbo.product AS P\r\n"
+				+ "INNER JOIN dbo.category AS CAT ON P.[category_id] = CAT.[id];";
 		
 		try {
 			connection = DBContext.getConnection();
@@ -46,10 +38,12 @@ public class ProductDAOImpl implements ProductDAO{
 				String description = resultSet.getString(6);
 				Date createAt = resultSet.getDate(7);
 				Date updateAt = resultSet.getDate(8);
-				int categoryId = resultSet.getInt(9);
 				int delete = resultSet.getInt(10);
 				int availability = resultSet.getInt(11);
-				Product product = new Product(id, title, price, discount, thumbnail, description, createAt, updateAt, categoryId, delete, availability);
+				int categoryId = resultSet.getInt(12);
+				String categoryName = resultSet.getString(13);
+				String categoryThumbnail = resultSet.getString(14);
+				Product product = new Product(id, title, price, discount, thumbnail, description, createAt, updateAt, new Category(categoryId, categoryName, categoryThumbnail), delete, availability);
 				listProducts.add(product);
 			}
 		} catch (Exception e) {

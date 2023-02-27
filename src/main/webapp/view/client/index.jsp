@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>  
 <c:url value = "/view/client/assets" var="url"/>
 <!DOCTYPE html>
 <html>
@@ -37,7 +38,7 @@
         <div class="humberger__menu__overlay"></div>
         <div class="humberger__menu__wrapper">
             <div class="humberger__menu__logo">
-                <a href="#"><img src="img/logo.png" alt=""></a>
+                <a href="#"><img src="${url}/img/logo.png" alt=""></a>
             </div>
             <div class="humberger__menu__cart">
                 <ul>
@@ -48,7 +49,7 @@
             </div>
             <div class="humberger__menu__widget">
                 <div class="header__top__right__language">
-                    <img src="img/language.png" alt="">
+                    <img src="${url}/img/language.png" alt="">
                     <div>English</div>
                     <span class="arrow_carrot-down"></span>
                     <ul>
@@ -114,7 +115,7 @@
                                     <a href="#"><i class="fa fa-pinterest-p"></i></a>
                                 </div>
                                 <div class="header__top__right__language">
-                                    <img src="img/language.png" alt="">
+                                    <img src="${url}/img/language.png" alt="">
                                     <div>English</div>
                                     <span class="arrow_carrot-down"></span>
                                     <ul>
@@ -134,7 +135,7 @@
                 <div class="row">
                     <div class="col-lg-3">
                         <div class="header__logo">
-                            <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                            <a href="./index.html"><img src="${url}/img/logo.png" alt=""></a>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -219,7 +220,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="hero__item set-bg" data-setbg="img/hero/banner.jpg">
+                        <div class="hero__item set-bg" data-setbg="${url}/img/hero/banner.jpg">
                             <div class="hero__text">
                                 <span>FRUIT FRESH</span>
                                 <h2>Vegetable <br />100% Organic</h2>
@@ -262,17 +263,22 @@
                         <div class="featured__controls">
                             <ul>
                                 <li class="active" data-filter="*">All</li>
-                                <li data-filter=".oranges">Oranges</li>
-                                <li data-filter=".fresh-meat">Fresh Meat</li>
-                                <li data-filter=".vegetables">Vegetables</li>
-                                <li data-filter=".fastfood">Fastfood</li>
+                                <c:forEach items = "${listCat}" var = "cat">
+                                    <c:set var = "str" value = "${cat.name}"/>
+                                    <c:set var = "catName" value = "${fn:split(str, ' ')}"/>
+                                    <c:set var = "catNames" value = "${fn:join(catName, '-')}"/>
+                                    <li class="t-capitalize" data-filter=".${catNames}">${cat.name}</li>
+                                </c:forEach>
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div class="row featured__filter">
                     <c:forEach items = "${listPro}" var = "pro">
-                        <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+                        <c:set var = "str" value = "${pro.categoryId.name}"/>
+                        <c:set var = "catName" value = "${fn:split(str, ' ')}"/>
+                        <c:set var = "catNames" value = "${fn:join(catName, '-')}"/>
+                        <div class="col-lg-3 col-md-4 col-sm-6 mix ${catNames}">
                             <div class="featured__item">
                                 <div class="featured__item__pic set-bg" data-setbg="${pageContext.request.contextPath}/view/client/assets/img/product/${pro.thumbnail}">
                                     <ul class="featured__item__pic__hover">
@@ -302,12 +308,12 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="banner__pic">
-                            <img src="img/banner/banner-1.jpg" alt="">
+                            <img src="${url}/img/banner/banner-1.jpg" alt="">
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="banner__pic">
-                            <img src="img/banner/banner-2.jpg" alt="">
+                            <img src="${url}/img/banner/banner-2.jpg" alt="">
                         </div>
                     </div>
                 </div>
@@ -324,62 +330,36 @@
                             <h4>Latest Products</h4>
                             <div class="latest-product__slider owl-carousel">
                                 <div class="latest-prdouct__slider__item">
-                                    <a href="#" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="img/latest-product/lp-1.jpg" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>Crab Pool Security</h6>
-                                            <span>$30.00</span>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="img/latest-product/lp-2.jpg" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>Crab Pool Security</h6>
-                                            <span>$30.00</span>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="img/latest-product/lp-3.jpg" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>Crab Pool Security</h6>
-                                            <span>$30.00</span>
-                                        </div>
-                                    </a>
+                                    <c:forEach items = "${topLastest}" var = "pro" begin = "0" end = "2">
+                                        <a href="#" class="latest-product__item">
+                                            <div class="latest-product__item__pic">
+                                                <img src="${pageContext.request.contextPath}/view/client/assets/img/product/${pro.thumbnail}" alt="">
+                                            </div>
+                                            <div class="latest-product__item__text">
+                                                <h6 class="t-capitalize">${pro.title}</h6>
+                                                <span>
+                                                    <h5 class="mr-2">${pro.discount}</h5>
+                                                    <h6 class="text-decoration">${pro.price}</h6>
+                                                </span>
+                                            </div>
+                                        </a>
+                                    </c:forEach>
                                 </div>
                                 <div class="latest-prdouct__slider__item">
-                                    <a href="#" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="img/latest-product/lp-1.jpg" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>Crab Pool Security</h6>
-                                            <span>$30.00</span>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="img/latest-product/lp-2.jpg" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>Crab Pool Security</h6>
-                                            <span>$30.00</span>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="img/latest-product/lp-3.jpg" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>Crab Pool Security</h6>
-                                            <span>$30.00</span>
-                                        </div>
-                                    </a>
+                                    <c:forEach items = "${topLastest}" var = "pro" begin = "3" end = "5">
+                                        <a href="#" class="latest-product__item">
+                                            <div class="latest-product__item__pic">
+                                                <img src="${pageContext.request.contextPath}/view/client/assets/img/product/${pro.thumbnail}" alt="">
+                                            </div>
+                                            <div class="latest-product__item__text">
+                                                <h6 class="t-capitalize">${pro.title}</h6>
+                                                <span>
+                                                    <h5 class="mr-2">${pro.discount}</h5>
+                                                    <h6 class="text-decoration">${pro.price}</h6>
+                                                </span>
+                                            </div>
+                                        </a>
+                                    </c:forEach>
                                 </div>
                             </div>
                         </div>
@@ -391,7 +371,7 @@
                                 <div class="latest-prdouct__slider__item">
                                     <a href="#" class="latest-product__item">
                                         <div class="latest-product__item__pic">
-                                            <img src="img/latest-product/lp-1.jpg" alt="">
+                                            <img src="${url}/img/latest-product/lp-1.jpg" alt="">
                                         </div>
                                         <div class="latest-product__item__text">
                                             <h6>Crab Pool Security</h6>
@@ -400,7 +380,7 @@
                                     </a>
                                     <a href="#" class="latest-product__item">
                                         <div class="latest-product__item__pic">
-                                            <img src="img/latest-product/lp-2.jpg" alt="">
+                                            <img src="${url}/img/latest-product/lp-2.jpg" alt="">
                                         </div>
                                         <div class="latest-product__item__text">
                                             <h6>Crab Pool Security</h6>
@@ -409,7 +389,7 @@
                                     </a>
                                     <a href="#" class="latest-product__item">
                                         <div class="latest-product__item__pic">
-                                            <img src="img/latest-product/lp-3.jpg" alt="">
+                                            <img src="${url}/img/latest-product/lp-3.jpg" alt="">
                                         </div>
                                         <div class="latest-product__item__text">
                                             <h6>Crab Pool Security</h6>
@@ -420,7 +400,7 @@
                                 <div class="latest-prdouct__slider__item">
                                     <a href="#" class="latest-product__item">
                                         <div class="latest-product__item__pic">
-                                            <img src="img/latest-product/lp-1.jpg" alt="">
+                                            <img src="${url}/img/latest-product/lp-1.jpg" alt="">
                                         </div>
                                         <div class="latest-product__item__text">
                                             <h6>Crab Pool Security</h6>
@@ -429,7 +409,7 @@
                                     </a>
                                     <a href="#" class="latest-product__item">
                                         <div class="latest-product__item__pic">
-                                            <img src="img/latest-product/lp-2.jpg" alt="">
+                                            <img src="${url}/img/latest-product/lp-2.jpg" alt="">
                                         </div>
                                         <div class="latest-product__item__text">
                                             <h6>Crab Pool Security</h6>
@@ -438,7 +418,7 @@
                                     </a>
                                     <a href="#" class="latest-product__item">
                                         <div class="latest-product__item__pic">
-                                            <img src="img/latest-product/lp-3.jpg" alt="">
+                                            <img src="${url}/img/latest-product/lp-3.jpg" alt="">
                                         </div>
                                         <div class="latest-product__item__text">
                                             <h6>Crab Pool Security</h6>
@@ -456,7 +436,7 @@
                                 <div class="latest-prdouct__slider__item">
                                     <a href="#" class="latest-product__item">
                                         <div class="latest-product__item__pic">
-                                            <img src="img/latest-product/lp-1.jpg" alt="">
+                                            <img src="${url}/img/latest-product/lp-1.jpg" alt="">
                                         </div>
                                         <div class="latest-product__item__text">
                                             <h6>Crab Pool Security</h6>
@@ -465,7 +445,7 @@
                                     </a>
                                     <a href="#" class="latest-product__item">
                                         <div class="latest-product__item__pic">
-                                            <img src="img/latest-product/lp-2.jpg" alt="">
+                                            <img src="${url}/img/latest-product/lp-2.jpg" alt="">
                                         </div>
                                         <div class="latest-product__item__text">
                                             <h6>Crab Pool Security</h6>
@@ -474,7 +454,7 @@
                                     </a>
                                     <a href="#" class="latest-product__item">
                                         <div class="latest-product__item__pic">
-                                            <img src="img/latest-product/lp-3.jpg" alt="">
+                                            <img src="${url}/img/latest-product/lp-3.jpg" alt="">
                                         </div>
                                         <div class="latest-product__item__text">
                                             <h6>Crab Pool Security</h6>
@@ -485,7 +465,7 @@
                                 <div class="latest-prdouct__slider__item">
                                     <a href="#" class="latest-product__item">
                                         <div class="latest-product__item__pic">
-                                            <img src="img/latest-product/lp-1.jpg" alt="">
+                                            <img src="${url}/img/latest-product/lp-1.jpg" alt="">
                                         </div>
                                         <div class="latest-product__item__text">
                                             <h6>Crab Pool Security</h6>
@@ -494,7 +474,7 @@
                                     </a>
                                     <a href="#" class="latest-product__item">
                                         <div class="latest-product__item__pic">
-                                            <img src="img/latest-product/lp-2.jpg" alt="">
+                                            <img src="${url}/img/latest-product/lp-2.jpg" alt="">
                                         </div>
                                         <div class="latest-product__item__text">
                                             <h6>Crab Pool Security</h6>
@@ -503,7 +483,7 @@
                                     </a>
                                     <a href="#" class="latest-product__item">
                                         <div class="latest-product__item__pic">
-                                            <img src="img/latest-product/lp-3.jpg" alt="">
+                                            <img src="${url}/img/latest-product/lp-3.jpg" alt="">
                                         </div>
                                         <div class="latest-product__item__text">
                                             <h6>Crab Pool Security</h6>
@@ -533,7 +513,7 @@
                     <div class="col-lg-4 col-md-4 col-sm-6">
                         <div class="blog__item">
                             <div class="blog__item__pic">
-                                <img src="img/blog/blog-1.jpg" alt="">
+                                <img src="${url}/img/blog/blog-1.jpg" alt="">
                             </div>
                             <div class="blog__item__text">
                                 <ul>
@@ -548,7 +528,7 @@
                     <div class="col-lg-4 col-md-4 col-sm-6">
                         <div class="blog__item">
                             <div class="blog__item__pic">
-                                <img src="img/blog/blog-2.jpg" alt="">
+                                <img src="${url}/img/blog/blog-2.jpg" alt="">
                             </div>
                             <div class="blog__item__text">
                                 <ul>
@@ -563,7 +543,7 @@
                     <div class="col-lg-4 col-md-4 col-sm-6">
                         <div class="blog__item">
                             <div class="blog__item__pic">
-                                <img src="img/blog/blog-3.jpg" alt="">
+                                <img src="${url}/img/blog/blog-3.jpg" alt="">
                             </div>
                             <div class="blog__item__text">
                                 <ul>
@@ -587,7 +567,7 @@
                     <div class="col-lg-3 col-md-6 col-sm-6">
                         <div class="footer__about">
                             <div class="footer__about__logo">
-                                <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                                <a href="./index.html"><img src="${url}/img/logo.png" alt=""></a>
                             </div>
                             <ul>
                                 <li>Address: 60-49 Road 11378 New York</li>
@@ -640,7 +620,7 @@
                             <div class="footer__copyright__text"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
       Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
       <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
-                            <div class="footer__copyright__payment"><img src="img/payment-item.png" alt=""></div>
+                            <div class="footer__copyright__payment"><img src="${url}/img/payment-item.png" alt=""></div>
                         </div>
                     </div>
                 </div>

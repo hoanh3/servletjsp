@@ -18,7 +18,7 @@ public class CategoryDAOImpl implements CategoryDAO{
 	@Override
 	public List<Category> getAll() {
 		List<Category> listCat = new ArrayList<>();
-		String query = "SELECT [int],[name],[thumbnail]" + 
+		String query = "SELECT [id],[name],[thumbnail]" + 
 					"FROM [QLHQ].[dbo].[category]";
 		try {
 			connection = DBContext.getConnection();
