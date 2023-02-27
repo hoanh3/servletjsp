@@ -21,20 +21,28 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public List<Product> getTopLastest() {
 		// TODO Auto-generated method stub
-		List<Product> listProduct = productDAO.getAll();
-		Collections.sort(listProduct, (p1, p2) -> {
-			Date d1 = (Date) ((Product) p1).getCreateAt();
-			Date d2 = (Date) ((Product) p2).getCreateAt();
-			return (int) (d2.getTime() - d1.getTime());
-		});
-		return listProduct.subList(0, 6);
+//		List<Product> listProduct = productDAO.getAll();
+//		Collections.sort(listProduct, (p1, p2) -> {
+//			Date d1 = (Date) ((Product) p1).getCreateAt();
+//			Date d2 = (Date) ((Product) p2).getCreateAt();
+//			return (int) (d2.getTime() - d1.getTime());
+//		});
+//		return listProduct.subList(0, 6);
+		
+		return productDAO.getTopLastest();
+	}
+	
+	@Override
+	public List<Product> getTopSale() {
+		return productDAO.getTopSale();
 	}
 	
 	public static void main(String[] args) {
 		ProductService productService = new ProductServiceImpl();
-		List<Product> lProducts = productService.getTopLastest();
+		List<Product> lProducts = productService.getTopSale();
 		for(Product product : lProducts) {
 			System.out.println(product);
 		}
 	}
+
 }

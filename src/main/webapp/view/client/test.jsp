@@ -23,13 +23,18 @@
 		<p>${cat.name}</p>
 		<img src="${pageContext.request.contextPath}/view/client/assets/img/categories/${cat.thumbnail}" height = "100px" width = "100px">
 	</c:forEach> -->
-	<c:forEach items = "${listPro}" var = "pro" begin = "0" end = "2">
+	<!-- <c:forEach items = "${listPro}" var = "pro" begin = "0" end = "2">
 		<p>${pro.title}</p>
 		<img src="${pageContext.request.contextPath}/view/client/assets/img/product/${pro.thumbnail}" height = "100px" width = "100px">
 	</c:forEach>
 	<c:forEach items = "${listPro}" var = "pro" begin = "3" end = "5">
 		<p>${pro.title}</p>
 		<img src="${pageContext.request.contextPath}/view/client/assets/img/product/${pro.thumbnail}" height = "100px" width = "100px">
+	</c:forEach> -->
+
+	<c:forEach items = "${topSale}" var = "pro">
+		<c:set var = "dis" value = "${(pro.price - pro.discount) / pro.price * 100}" />
+		<c:out value = "${fn:substringBefore(dis, '.')}" />
 	</c:forEach>
 </body>
 </html>

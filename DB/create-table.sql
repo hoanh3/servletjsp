@@ -34,8 +34,8 @@ GO
 CREATE TABLE [product] (
   [id] int PRIMARY KEY IDENTITY(1,1),
   [title] nvarchar(50) NOT NULL,
-  [price] int NOT NULL,
-  [discount] int NOT NULL,
+  [price] float NOT NULL,
+  [discount] float NOT NULL,
   [thumbnail] nvarchar(200) NOT NULL,
   [description] text NOT NULL,
   [availability] int NOT NULL,
@@ -55,7 +55,7 @@ GO
 
 CREATE TABLE [review] (
   [id] int PRIMARY KEY IDENTITY(1,1),
-  [rate] int,
+  [rate] float,
   [content] nvarchar(200) NOT NULL,
   [user_id] int NOT NULL,
   [product_id] int NOT NULL
@@ -81,7 +81,7 @@ CREATE TABLE [order] (
   [note] nvarchar(200) NOT NULL,
   [order_date] datetime NOT NULL,
   [status] int NOT NULL,
-  [total_money] int NOT NULL,
+  [total_money] float NOT NULL,
   [user_id] int NOT NULL
 )
 GO
@@ -90,7 +90,7 @@ CREATE TABLE [order_detail] (
   [id] int PRIMARY KEY IDENTITY(1,1),
   [order_id] int NOT NULL,
   [product_id] int NOT NULL,
-  [price] int NOT NULL,
+  [price] float NOT NULL,
   [num] int NOT NULL
 )
 GO
