@@ -41,4 +41,13 @@
   	<servlet-name>Product servlet</servlet-name>
   	<url-pattern>/product</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>Search servlet</servlet-name>
+  	<servlet-class>webdemo.mvc.controllers.SearchPrController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Search servlet</servlet-name>
+  	<url-pattern>/search</url-pattern>
+  </servlet-mapping>
 </web-app>

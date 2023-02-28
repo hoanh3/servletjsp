@@ -27,12 +27,12 @@
                 <div class="col-lg-9">
                     <div class="hero__search">
                         <div class="hero__search__form">
-                            <form action="#">
+                            <form action="${pageContext.request.contextPath}/search">
                                 <div class="hero__search__categories">
                                     All Categories
                                     <span class="arrow_carrot-down"></span>
                                 </div>
-                                <input type="text" placeholder="What do yo u need?">
+                                <input type="text" placeholder="What do yo u need?" id = "searchStr" name="searchStr">
                                 <button type="submit" class="site-btn">SEARCH</button>
                             </form>
                         </div>
@@ -61,7 +61,13 @@
                         <h2>Organi Shop</h2>
                         <div class="breadcrumb__option">
                             <a href="${pageContext.request.contextPath}/">Home</a>
-                            <span>Shop</span>
+                            <c:if test = "${not empty catName}">
+                                <a href="${pageContext.request.contextPath}/shop">Shop</a>
+                                <span class="fs16-w">${catName}</span>
+                            </c:if>
+                            <c:if test = "${empty catName}">
+                                <span class="fs16-w">Shop</span>
+                            </c:if>
                         </div>
                     </div>
                 </div>

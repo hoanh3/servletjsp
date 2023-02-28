@@ -48,11 +48,15 @@ public class ProductServiceImpl implements ProductService{
 		return productDAO.getProductById(productId);
 	}
 	
+	@Override
+	public List<Product> searchProductByName(String name) {
+		return productDAO.searchProductByName(name);
+	}
+	
 	public static void main(String[] args) {
 		ProductService productService = new ProductServiceImpl();
 		Product lProducts = productService.getProductById("1");
-		List<Product> products = productService.getAll();
-		products.remove(lProducts);
+		List<Product> products = productService.searchProductByName("fruit");
 		for(Product product : products) {
 			System.out.println(product);
 		}

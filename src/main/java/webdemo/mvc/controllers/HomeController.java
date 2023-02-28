@@ -31,6 +31,7 @@ public class HomeController extends HttpServlet{
 		List<Product> listTopLastestProducts = productService.getTopLastest();
 		request.setAttribute("topLastest", listTopLastestProducts);
 	
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/view/client/index.jsp");
 		dispatcher.forward(request, response);
 		

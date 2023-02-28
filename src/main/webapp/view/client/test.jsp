@@ -32,9 +32,17 @@
 		<img src="${pageContext.request.contextPath}/view/client/assets/img/product/${pro.thumbnail}" height = "100px" width = "100px">
 	</c:forEach> -->
 
-	<c:forEach items = "${topSale}" var = "pro">
+	<!-- <c:forEach items = "${topSale}" var = "pro">
 		<c:set var = "dis" value = "${(pro.price - pro.discount) / pro.price * 100}" />
 		<c:out value = "${fn:substringBefore(dis, '.')}" />
-	</c:forEach>
+	</c:forEach> -->
+
+	<c:set var="emptyStr" value = "" />
+	<c:out value = "${emptyStr}"  />
+
+	<c:out value = "${err}"  />
+	<c:if test="${empty err}">
+		<span>if true</span>
+	</c:if>
 </body>
 </html>

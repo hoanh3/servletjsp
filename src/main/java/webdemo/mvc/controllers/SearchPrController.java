@@ -15,14 +15,13 @@ import webdemo.mvc.services.ProductService;
 import webdemo.mvc.services.Impl.CategoryServiceImpl;
 import webdemo.mvc.services.Impl.ProductServiceImpl;
 
-public class CategoryController extends HttpServlet{
-
+public class SearchPrController extends HttpServlet{
 	private ProductService productService = new ProductServiceImpl();
 	private CategoryService categoryService = new CategoryServiceImpl();
 	
+	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		List<Category> listC = categoryService.getAll();
 		request.setAttribute("listCat", listC);
 		
@@ -32,20 +31,11 @@ public class CategoryController extends HttpServlet{
 		List<Product> listTopSaleProducts = productService.getTopSale();
 		request.setAttribute("topSale", listTopSaleProducts);
 		
-		String catId = request.getParameter("catId");
-		List<Product> listProductByCatId = productService.getProductByCatId(catId);
-		request.setAttribute("listPro", listProductByCatId);
+		String searchName = request.getParameter("searchStr");
+		List<Product> listP = productService.searchProductByName(searchName);
+		request.setAttribute("listPro", listP);
 		
-		String catName = "";
-		for(Category cat : listC) {
-			if(cat.getId() == Integer.valueOf(catId)) {
-				catName = cat.getName();
-				break;
-			}
-		}
-		request.setAttribute("catName", catName);
-	
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/view/client/shop.jsp");
 		dispatcher.forward(request, response);
-	}	
+	}
 }
