@@ -21,7 +21,7 @@
                             </div>
                             <ul>
                                 <c:forEach items = "${listCat}" var = "cat">
-                                    <li class="t-capitalize"><a href="#">${cat.name}</a></li>
+                                    <li class="t-capitalize"><a href="${pageContext.request.contextPath}/category?catId=${cat.id}">${cat.name}</a></li>
                                 </c:forEach>
                             </ul>
                         </div>
@@ -53,7 +53,7 @@
                                 <span>FRUIT FRESH</span>
                                 <h2>Vegetable <br />100% Organic</h2>
                                 <p>Free Pickup and Delivery Available</p>
-                                <a href="#" class="primary-btn">SHOP NOW</a>
+                                <a href="${pageContext.request.contextPath}/shop" class="primary-btn">SHOP NOW</a>
                             </div>
                         </div>
                     </div>
@@ -70,7 +70,7 @@
                         <c:forEach items = "${listCat}" var = "cat">
                             <div class="col-lg-3">
                                 <div class="categories__item set-bg" data-setbg="${pageContext.request.contextPath}/view/client/assets/img/categories/${cat.thumbnail}">
-                                    <h5><a href="#">${cat.name}</a></h5>
+                                    <h5><a href="${pageContext.request.contextPath}/category?catId=${cat.id}">${cat.name}</a></h5>
                                 </div>
                             </div>
                         </c:forEach>
@@ -116,7 +116,7 @@
                                     </ul>
                                 </div>
                                 <div class="featured__item__text">
-                                    <h6 class="t-capitalize"><a href="#">${pro.title}</a></h6>
+                                    <h6 class="t-capitalize"><a href="${pageContext.request.contextPath}/product?pid=${pro.id}">${pro.title}</a></h6>
                                     <div class="d-flex">
                                         <h5 class="mr-2">${pro.discount}</h5>
                                         <h6 class="text-decoration">${pro.price}</h6>
@@ -159,7 +159,7 @@
                             <div class="latest-product__slider owl-carousel">
                                 <div class="latest-prdouct__slider__item">
                                     <c:forEach items = "${topLastest}" var = "pro" begin = "0" end = "2">
-                                        <a href="#" class="latest-product__item">
+                                        <a href="${pageContext.request.contextPath}/product?pid=${pro.id}" class="latest-product__item">
                                             <div class="latest-product__item__pic">
                                                 <img src="${pageContext.request.contextPath}/view/client/assets/img/product/${pro.thumbnail}" alt="">
                                             </div>
@@ -175,7 +175,7 @@
                                 </div>
                                 <div class="latest-prdouct__slider__item">
                                     <c:forEach items = "${topLastest}" var = "pro" begin = "3" end = "5">
-                                        <a href="#" class="latest-product__item">
+                                        <a href="${pageContext.request.contextPath}/product?pid=${pro.id}" class="latest-product__item">
                                             <div class="latest-product__item__pic">
                                                 <img src="${pageContext.request.contextPath}/view/client/assets/img/product/${pro.thumbnail}" alt="">
                                             </div>

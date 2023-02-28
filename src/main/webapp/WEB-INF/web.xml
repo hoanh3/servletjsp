@@ -23,4 +23,22 @@
   	<servlet-name>Shop servlet</servlet-name>
   	<url-pattern>/shop</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>Category servlet</servlet-name>
+  	<servlet-class>webdemo.mvc.controllers.CategoryController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Category servlet</servlet-name>
+  	<url-pattern>/category</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>Product servlet</servlet-name>
+  	<servlet-class>webdemo.mvc.controllers.ProductController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Product servlet</servlet-name>
+  	<url-pattern>/product</url-pattern>
+  </servlet-mapping>
 </web-app>

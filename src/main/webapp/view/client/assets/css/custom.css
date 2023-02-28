@@ -1,7 +1,7 @@
 .text-decoration {
 	text-decoration: line-through;
 	text-decoration-color: #333333;
-	color: #333333;
+	color: #333333 !important;
 }
 
 .d-flex {
@@ -12,4 +12,16 @@
 
 .t-capitalize {
     text-transform: capitalize;
+}
+
+.jc-left {
+	justify-content: left;
+}
+
+.f-16 {
+	font-size: 20px !important;
+}
+
+.test {
+	color: white;
 }

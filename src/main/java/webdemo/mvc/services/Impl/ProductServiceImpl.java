@@ -1,6 +1,7 @@
 package webdemo.mvc.services.Impl;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
@@ -37,10 +38,22 @@ public class ProductServiceImpl implements ProductService{
 		return productDAO.getTopSale();
 	}
 	
+	@Override
+	public List<Product> getProductByCatId(String catId) {
+		return productDAO.getProductByCatId(catId);
+	}
+	
+	@Override
+	public Product getProductById(String productId) {
+		return productDAO.getProductById(productId);
+	}
+	
 	public static void main(String[] args) {
 		ProductService productService = new ProductServiceImpl();
-		List<Product> lProducts = productService.getTopSale();
-		for(Product product : lProducts) {
+		Product lProducts = productService.getProductById("1");
+		List<Product> products = productService.getAll();
+		products.remove(lProducts);
+		for(Product product : products) {
 			System.out.println(product);
 		}
 	}
