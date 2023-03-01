@@ -55,3 +55,17 @@ VALUES
     N'pork meat', 120000, 109000, N'product-1.jpg', N'Pork is the culinary name for the meat of the pig (Sus domesticus). It is the most commonly consumed meat worldwide,[1] with evidence of pig husbandry dating back to 5000 BCE.[2] Pork is eaten both freshly cooked and preserved; curing extends the shelf life of pork products. Ham, gammon, bacon, and sausage are examples of preserved pork. Charcuterie is the branch of cooking devoted to prepared meat products, many from pork. Pork is the most popular meat in the Western world, particularly in Central Europe. It is also very popular in East and Southeast Asia (Mainland Southeast Asia, Philippines, Singapore, and East Timor). The meat is highly prized in Asian cuisines, especially in China (including Hong Kong), for its fat content and texture. Some religions and cultures prohibit pork consumption, notably Islam and Judaism.', '20230227', '20230227', 5, 1, 1
 )
 GO
+
+INSERT INTO [dbo].[role]
+(
+ [name]
+)
+VALUES
+(
+    N'ADMIN'
+),
+(
+    N'USER'
+)
+-- Add more rows here
+GO

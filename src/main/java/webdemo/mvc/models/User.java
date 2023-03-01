@@ -9,7 +9,7 @@ public class User {
 	private String password;
 	private String phoneNumber;
 	private String address;
-	private int roleId;
+	private Role roleId;
 	private Date createAt;
 	private Date updateAt;
 	private int delete;
@@ -18,7 +18,7 @@ public class User {
 		super();
 	}
 
-	public User(int id, String fullname, String email, String password, String phoneNumber, String address, int roleId,
+	public User(int id, String fullname, String email, String password, String phoneNumber, String address, Role roleId,
 			Date createAt, Date updateAt, int delete) {
 		super();
 		this.id = id;
@@ -81,11 +81,11 @@ public class User {
 		this.address = address;
 	}
 
-	public int getRoleId() {
+	public Role getRoleId() {
 		return roleId;
 	}
 
-	public void setRoleId(int roleId) {
+	public void setRoleId(Role roleId) {
 		this.roleId = roleId;
 	}
 
@@ -119,5 +119,4 @@ public class User {
 				+ ", phoneNumber=" + phoneNumber + ", address=" + address + ", roleId=" + roleId + ", createAt="
 				+ createAt + ", updateAt=" + updateAt + ", delete=" + delete + "]";
 	}
-	
 }
