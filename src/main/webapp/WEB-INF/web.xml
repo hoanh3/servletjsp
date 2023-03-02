@@ -6,6 +6,45 @@
   	<welcome-file>view/client/index.jsp</welcome-file>
   </welcome-file-list>
   
+  <!--Admin controller begin-->
+  <servlet>
+  	<servlet-name>Admin Home Servlet</servlet-name>
+  	<servlet-class>webdemo.mvc.controllers.admin.AdminHomeController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Admin Home Servlet</servlet-name>
+  	<url-pattern>/admin/home</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>Admin Login Servlet</servlet-name>
+  	<servlet-class>webdemo.mvc.controllers.admin.AdminLoginController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Admin Login Servlet</servlet-name>
+  	<url-pattern>/admin/login</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>Admim Add Servlet</servlet-name>
+  	<servlet-class>webdemo.mvc.controllers.admin.AdminAddController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Admim Add Servlet</servlet-name>
+  	<url-pattern>/admin/admin/add</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>Admim List Servlet</servlet-name>
+  	<servlet-class>webdemo.mvc.controllers.admin.AdminListController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Admim List Servlet</servlet-name>
+  	<url-pattern>/admin/admin/list</url-pattern>
+  </servlet-mapping>
+  <!--Admin controller end-->
+  
+  <!--Client controller begin-->
   <servlet>
   	<servlet-name>Home Servlet</servlet-name>
   	<servlet-class>webdemo.mvc.controllers.HomeController</servlet-class>
