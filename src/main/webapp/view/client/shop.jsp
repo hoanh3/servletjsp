@@ -239,7 +239,7 @@
                                             </div>
                                             <div class="product__discount__item__text">
                                                 <span>${pro.categoryId.name}</span>
-                                                <h5><a href="${pageContext.request.contextPath}/product?pid=${pro.id}">${pro.title}</a></h5>
+                                                <h5><a class="t-capitalize" href="${pageContext.request.contextPath}/product?pid=${pro.id}">${pro.title}</a></h5>
                                                 <div class="product__item__price">${pro.discount} <span>${pro.price}</span>
                                                 </div>
                                             </div>
@@ -297,10 +297,9 @@
                         </c:forEach>
                     </div>
                     <div class="product__pagination">
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                        <c:forEach begin = "1" end = "${pageEnd}" var = "i">
+                            <a href="${pageContext.request.contextPath}/shop?page-id=${i}" class="${pageActive == i ? 'active' : ''}">${i}</a>
+                        </c:forEach>
                     </div>
                 </div>
             </div>

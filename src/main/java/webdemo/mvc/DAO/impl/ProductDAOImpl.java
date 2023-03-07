@@ -49,7 +49,6 @@ public class ProductDAOImpl implements ProductDAO{
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println("loi productDao");
-			e.printStackTrace();
 		}
 		return listProducts;
 	}
@@ -86,7 +85,6 @@ public class ProductDAOImpl implements ProductDAO{
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println("loi productDao");
-			e.printStackTrace();
 		}
 		return listProducts;
 	}
@@ -123,7 +121,6 @@ public class ProductDAOImpl implements ProductDAO{
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println("loi productDao");
-			e.printStackTrace();
 		}
 		return listProducts;
 	}
@@ -160,7 +157,6 @@ public class ProductDAOImpl implements ProductDAO{
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println("loi productDao");
-			e.printStackTrace();
 		}
 		return listProducts;
 	}
@@ -196,7 +192,6 @@ public class ProductDAOImpl implements ProductDAO{
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println("loi productDao");
-			e.printStackTrace();
 		}
 		return product;
 	}
@@ -233,8 +228,74 @@ public class ProductDAOImpl implements ProductDAO{
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println("loi productDao");
-			e.printStackTrace();
 		}
 		return listProducts;
+	}
+
+	@Override
+	public List<Product> getProductInPage(int pageId) {
+		List<Product> listProducts = new ArrayList<>();
+		String query = "SELECT P.*, CAT.*\r\n"
+				+ "FROM [dbo].[product] AS P\r\n"
+				+ "INNER JOIN dbo.category AS CAT ON P.category_id = CAT.id\r\n"
+				+ "ORDER BY P.[id]\r\n"
+				+ "OFFSET ? ROWS\r\n"
+				+ "FETCH NEXT 9 ROWS ONLY";
+		
+		try {
+			connection = DBContext.getConnection();
+			preparedStatement = connection.prepareStatement(query);
+			int offsetIdx = (pageId - 1) * 9;
+			preparedStatement.setInt(1, offsetIdx);
+			resultSet = preparedStatement.executeQuery();
+			while(resultSet.next()) {
+				int id = resultSet.getInt(1);
+				String title = resultSet.getString(2);
+				int price = resultSet.getInt(3);
+				int discount = resultSet.getInt(4);
+				String thumbnail = resultSet.getString(5);
+				String description = resultSet.getString(6);
+				Date createAt = resultSet.getDate(7);
+				Date updateAt = resultSet.getDate(8);
+				int delete = resultSet.getInt(10);
+				int availability = resultSet.getInt(11);
+				int categoryId = resultSet.getInt(12);
+				String categoryName = resultSet.getString(13);
+				String categoryThumbnail = resultSet.getString(14);
+				Product product = new Product(id, title, price, discount, thumbnail, description, createAt, updateAt, new Category(categoryId, categoryName, categoryThumbnail), delete, availability);
+				listProducts.add(product);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("loi productDao");
+		}
+		return listProducts;
+	}
+
+	@Override
+	public int getNumberOfProduct() {
+		int total = 0;
+		String query = "SELECT COUNT(*) FROM dbo.product";
+		
+		try {
+			connection = DBContext.getConnection();
+			preparedStatement = connection.prepareStatement(query);
+			resultSet = preparedStatement.executeQuery();
+			while(resultSet.next()) {
+				total = resultSet.getInt(1);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("loi productDao");
+		}
+		return total;
+	}
+	
+	public static void main(String[] args) {
+		ProductDAO productDAO = new ProductDAOImpl();
+		List<Product> ls = productDAO.getProductInPage(1);
+		for(Product p : ls) {
+			System.out.println(p);
+		}
 	}
 }

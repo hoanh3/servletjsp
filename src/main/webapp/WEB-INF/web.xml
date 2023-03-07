@@ -42,6 +42,24 @@
   	<servlet-name>Admim List Servlet</servlet-name>
   	<url-pattern>/admin/admin/list</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>Admim Delete Servlet</servlet-name>
+  	<servlet-class>webdemo.mvc.controllers.admin.AdminDeleteController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Admim Delete Servlet</servlet-name>
+  	<url-pattern>/admin/admin/delete</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>Admim Update Servlet</servlet-name>
+  	<servlet-class>webdemo.mvc.controllers.admin.AdminUpdateController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Admim Update Servlet</servlet-name>
+  	<url-pattern>/admin/admin/edit</url-pattern>
+  </servlet-mapping>
   <!--Admin controller end-->
   
   <!--Client controller begin-->

@@ -27,7 +27,7 @@ public class ProductController extends HttpServlet{
 		
 		String catId = String.valueOf(product.getCategoryId().getId());
 		List<Product> relatedProductList = productService.getProductByCatId(catId);
-		relatedProductList = relatedProductList.subList(0, Math.min(5, relatedProductList.size()));
+		relatedProductList = relatedProductList.subList(0, Math.min(4, relatedProductList.size()));
 		request.setAttribute("relatedList", relatedProductList);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/view/client/product-detail.jsp");

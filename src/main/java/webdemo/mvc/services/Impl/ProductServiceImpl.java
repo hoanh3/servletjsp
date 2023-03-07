@@ -53,6 +53,16 @@ public class ProductServiceImpl implements ProductService{
 		return productDAO.searchProductByName(name);
 	}
 	
+	@Override
+	public List<Product> getProductInPage(int pageId) {
+		return productDAO.getProductInPage(pageId);
+	}
+	
+	@Override
+	public int getNumberOfProduct() {
+		return productDAO.getNumberOfProduct();
+	}
+	
 	public static void main(String[] args) {
 		ProductService productService = new ProductServiceImpl();
 		Product lProducts = productService.getProductById("1");
@@ -61,5 +71,4 @@ public class ProductServiceImpl implements ProductService{
 			System.out.println(product);
 		}
 	}
-
 }

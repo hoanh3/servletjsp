@@ -31,3 +31,9 @@
     color: #ffffff;
     font-weight: 700;
 }
+
+.product__pagination .active {
+	background: rgb(127, 173, 57);
+    border-color: rgb(127, 173, 57);
+    color: rgb(255, 255, 255);
+}

@@ -9,7 +9,7 @@
           <div class="col-lg-8">
             <div class="card">
               <div class="card-body">
-                <div class="card-title">Chuyên mục: Sửa</div>
+                <div class="card-title">Edit Admin</div>
                 <hr>
           	
 	         <form action="${pageContext.request.contextPath}/admin/admin/edit" method="post"> 
@@ -18,13 +18,13 @@
 	                    <input type="text" class="form-control" readonly id="input-1" placeholder="Admin ID" name="id" value="${admin.id}">
 	                  </div>
 	                  <div class="form-group">
-	                    <label for="input-1">Username</label>
-	                    <input type="text" class="form-control" id="input-1" placeholder="Username" name="username" value="${admin.username}">
+	                    <label for="input-1">Email</label>
+	                    <input type="text" class="form-control" id="input-1" placeholder="Username" name="email" value="${admin.email}">
 	                  </div>
 	                  <div class="form-group">
 	                    <label for="input-1">Password</label>
 	                    <input type="password" class="form-control" id="myinput" placeholder="Mật khẩu" name="password" value="${admin.password}">
-        <input type="checkbox" onclick="myFunction1()">Hiển thị mật khẩu
+        <input type="checkbox" onclick="myFunction1()">Show password
                     <script>function myFunction1() {
                     	  var x = document.getElementById("myinput");
                     	  if (x.type === "password") {
@@ -35,12 +35,12 @@
                     	}</script> 
 	                  </div>
 	                  <div class="form-group">
-	                    <label for="input-1">Tên Admin</label>
+	                    <label for="input-1">Name </label>
 	                    <input type="text" class="form-control" id="input-1" placeholder="Tên Admin" name="name" value="${admin.name}">
 	                  </div>	                  		              
 	                 <div class="form-footer">
-	                 <button type="reset" class="btn btn-danger"><i class="fa fa-times"></i> Hủy </button>
-	                    <button type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i> Sửa </button>
+	                 <button type="reset" class="btn btn-danger"><i class="fa fa-times"></i> Cancel </button>
+	                    <button type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i> Edit </button>
 	                </div> 
 	               
 	                </form>

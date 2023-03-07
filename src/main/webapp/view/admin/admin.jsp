@@ -53,6 +53,13 @@
                 </div> 
               </div> 
             </div> 
+          </div>
+          <div class="col-lg-12"> 
+            <div class="product__pagination">
+              <c:forEach begin = "1" end = "${endPage}" var = "i">
+                  <a href="${pageContext.request.contextPath}/admin/admin/list?page-id=${i}" class="${pageActive == i ? 'active' : ''}">${i}</a>
+              </c:forEach>
+          </div> 
           </div> 
         </div> 
       </div> 

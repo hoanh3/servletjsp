@@ -23,6 +23,7 @@
   <link href="${url}/css/icons.css" rel="stylesheet" type="text/css" />
   <link href="${url}/css/sidebar-menu.css" rel="stylesheet" />
   <link href="${url}/css/app-style.css" rel="stylesheet" />
+  <link rel="stylesheet" href="${url}/css/custom.css">
   
 
 </head>

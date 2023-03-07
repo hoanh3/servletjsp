@@ -29,4 +29,35 @@ public class AdminServiceImpl implements AdminService{
 		return adminDAO.getAll();
 	}
 
+
+	@Override
+	public List<Admin> getAdminInPage(int pageId) {
+		return adminDAO.getAdminInPage(pageId);
+	}
+
+
+	@Override
+	public int getNumOfAdmin() {
+		// TODO Auto-generated method stub
+		return adminDAO.getNumOfAdmin();
+	}
+
+
+	@Override
+	public int deleteAdmin(int id) {
+		return adminDAO.deleteAdmin(id);
+	}
+
+
+	@Override
+	public int updateAdmin(Admin admin) {
+		return adminDAO.updateAdmin(admin);
+	}
+
+
+	@Override
+	public Admin getAdminById(int id) {
+		return adminDAO.getAdminById(id);
+	}
+
 }

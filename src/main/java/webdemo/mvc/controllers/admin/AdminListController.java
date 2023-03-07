@@ -17,10 +17,23 @@ public class AdminListController extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		List<Admin> adminList = adminService.getAll();
+		
+		String pid = req.getParameter("pid");
+		if(pid == null) {
+			pid = "1";
+		}
+		
+		List<Admin> adminList = adminService.getAdminInPage(Integer.valueOf(pid));
 		req.setAttribute("adminList", adminList);
 		
-
+		int NOAdmin = adminService.getNumOfAdmin();
+		int endPage = NOAdmin / 10;
+		if(NOAdmin % 10 != 0) {
+			endPage++;
+		}
+		req.setAttribute("endPage", endPage);
+		req.setAttribute("pageActive", pid);
+		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/view/admin/admin.jsp");
 		dispatcher.forward(req, resp);
 	}

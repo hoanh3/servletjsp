@@ -22,7 +22,17 @@ public class ShopController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		List<Product> listP = productService.getAll();
+		int numOfProduct = productService.getNumberOfProduct();
+		int endPage = (numOfProduct % 9 == 0) ? numOfProduct / 9 : numOfProduct / 9 + 1;
+		request.setAttribute("pageEnd", endPage);
+		
+		String pageIdString = request.getParameter("page-id");
+		if(pageIdString == null) {
+			pageIdString = "1";
+		}
+		request.setAttribute("pageActive", pageIdString);
+		
+		List<Product> listP = productService.getProductInPage(Integer.valueOf(pageIdString));
 		request.setAttribute("listPro", listP);
 		
 		List<Category> listC = categoryService.getAll();
