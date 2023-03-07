@@ -22,34 +22,33 @@
           <div class="col-lg-12">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Danh sách User</h5>
+                <h5 class="card-title">User List</h5>
                 <div class="table-responsive">
                   <table class="table table-striped">
                     <thead>
                       <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Tên</th>
+                        <th scope="col">FullName</th>
                         <th scope="col">Email</th>
-                        <th scope="col">Số điện thoại</th>
-                        <th scope="col">Username</th>
-                        <th scope="col">Ngày tạo</th>
-                         <th scope="col">Hành động</th>
-             
+                        <th scope="col">Phone Number</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Create At</th>
+                        <th scope="col">Update At</th>
+                        <th scope="col">Action</th>
                       </tr>
                     </thead>
                     <tbody>
                   <c:forEach items="${userList}" var="user">
                       <tr>
-                        <td scope="row">${user.id}</td>
-                        <td>${user.name }</td>
-        				<td>${user.email }</td>
-        				<td>${user.phone }</td>
-        				<td>${user.username }</td>
-        				<td>${user.created }</td>
-        				 <td>
-                          <button class="btn btn-danger"><a href="${pageContext.request.contextPath}/admin/user/delete?user-id=${user.id}">Xóa</a></button>
+                        <td>${user.fullname}</td>
+                        <td>${user.email}</td>
+                        <td>${user.phoneNumber}</td>
+                        <td>${user.address}</td>
+                        <td>${user.createAt}</td>
+                        <td>${user.updateAt}</td>
+        				        <td>
+                          <button class="btn btn-danger"><a href="${pageContext.request.contextPath}/admin/user/delete?user-id=${user.id}">Delete</a></button>
                          
-                          <button class="btn btn-success"><a href="${pageContext.request.contextPath}/admin/user/edit?user-id=${user.id}">Sửa</a></button>
+                          <button class="btn btn-success"><a href="${pageContext.request.contextPath}/admin/user/edit?user-id=${user.id}">Edit</a></button>
                         </td>
                      </tr>
                     </c:forEach>
@@ -58,6 +57,12 @@
                 </div>
               </div>
             </div>
+          </div>
+          <div class="col-lg-12"> 
+            <div class="product__pagination">
+              <c:forEach begin = "1" end = "${endPage}" var = "i">
+                  <a href="${pageContext.request.contextPath}/admin/user/list?page-id=${i}" class="${pageActive == i ? 'active' : ''}">${i}</a>
+              </c:forEach>
           </div>
         </div>
         <div class="overlay toggle-menu"></div>

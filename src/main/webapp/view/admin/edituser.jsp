@@ -10,7 +10,7 @@
           <div class="col-lg-12">
             <div class="card">
               <div class="card-body">
-                <div class="card-title">Sửa User</div>
+                <div class="card-title">Edit User</div>
                 <hr>
                 <form action="${pageContext.request.contextPath}/admin/user/edit" method="post">
                   <div class="form-group">
@@ -18,26 +18,26 @@
                     <input type="text" class="form-control" id="input-1" readonly="readonly" placeholder="ID" value="${user.id}" name="user-id">
                   </div>
                   <div class="form-group">
-                    <label for="input-1">Họ tên</label>
-                    <input type="text" class="form-control" id="input-2" placeholder="Họ tên" value="${user.name}" name="user-name">
+                    <label for="input-2">FullName</label>
+                    <input type="text" class="form-control" id="input-2" placeholder="FullName" value="${user.fullname}" name="user-fullname">
                   </div>
                   <div class="form-group">
-                    <label for="input-2">Email</label>
-                    <input type="text" class="form-control" id="input-3" placeholder="Địa chỉ Email" value="${user.email}" name="user-email">
+                    <label for="input-3">Email</label>
+                    <input type="text" class="form-control" id="input-3" placeholder="Email" value="${user.email}" name="user-email">
                   </div>
                   <div class="form-group">
-                    <label for="input-3">Số điện thoại</label>
-                    <input type="text" class="form-control" id="input-4" placeholder="Số điện thoại" value="${user.phone}" name="user-phone">
+                    <label for="input-4">Phone Number</label>
+                    <input type="text" class="form-control" id="input-4" placeholder="Phone Number" value="${user.phoneNumber}" name="user-phoneNumber">
                   </div>
                   <div class="form-group">
-                    <label for="input-3">UserName</label>
-                    <input type="text" class="form-control" id="input-5" placeholder="Username" value="${user.username}" name="user-userName">
+                    <label for="input-5">Address</label>
+                    <input type="text" class="form-control" id="input-5" placeholder="Address" value="${user.address}" name="user-address">
                   </div>
                   <div class="form-group">
-                    <label for="input-4">Mật khẩu</label>
+                    <label for="myinput">Password</label>
                     <input type="password" class="form-control" id="myinput" placeholder="Mật khẩu" value="${user.password}" name="user-password">
-					<input type="checkbox" onclick="myFunction1()">Hiển thị mật khẩu
-					<script>function myFunction1() {
+                    <input type="checkbox" onclick="myFunction1()">Show Password
+                    <script>function myFunction1() {
                     	  var x = document.getElementById("myinput");
                     	  if (x.type === "password") {
                     	    x.type = "text";
@@ -45,17 +45,22 @@
                     	    x.type = "password";
                     	  }
                     	}
-					</script>                   
+					          </script>                   
                   </div>
                   <div class="form-group">
-                    <label for="input-5">Date</label>
-                    <input type="date" class="form-control" id="input-6" placeholder="Ngày tạo" value="${user.created}" name="user-created">
+                    <label for="input-6">Create At</label>
+                    <input type="date" class="form-control" id="input-6" placeholder="Create At" value="${user.createAt}" name="user-createAt">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="input-7">Update At</label>
+                    <input type="date" class="form-control" id="input-7" placeholder="Update At" value="${user.updateAt}" name="user-updateAt">
                   </div>
                   
                   <div class="form-group">
-                    <button class="btn btn-danger"><a href="${pageContext.request.contextPath}/admin/user/list">Hủy</a></button>
+                    <button class="btn btn-danger"><a href="${pageContext.request.contextPath}/admin/user/list">Cancel</a></button>
                          
-                     <button type="submit" class="btn btn-success">Cập nhật</button>
+                     <button type="submit" class="btn btn-success">Update</button>
                   </div>
                 </form>
               </div>

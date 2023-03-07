@@ -60,6 +60,33 @@
   	<servlet-name>Admim Update Servlet</servlet-name>
   	<url-pattern>/admin/admin/edit</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+  <servlet-name>User List Servlet</servlet-name>
+  <servlet-class>webdemo.mvc.controllers.admin.UserListController</servlet-class>
+</servlet>
+<servlet-mapping>
+  <servlet-name>User List Servlet</servlet-name>
+  <url-pattern>/admin/user/list</url-pattern>
+</servlet-mapping>
+
+<servlet>
+  <servlet-name>User Delete Servlet</servlet-name>
+  <servlet-class>webdemo.mvc.controllers.admin.UserDeleteController</servlet-class>
+</servlet>
+<servlet-mapping>
+  <servlet-name>User Delete Servlet</servlet-name>
+  <url-pattern>/admin/user/delete</url-pattern>
+</servlet-mapping>
+
+<servlet>
+  <servlet-name>User Update Servlet</servlet-name>
+  <servlet-class>webdemo.mvc.controllers.admin.UserUpdateController</servlet-class>
+</servlet>
+<servlet-mapping>
+  <servlet-name>User Update Servlet</servlet-name>
+  <url-pattern>/admin/user/edit</url-pattern>
+</servlet-mapping>
   <!--Admin controller end-->
   
   <!--Client controller begin-->
