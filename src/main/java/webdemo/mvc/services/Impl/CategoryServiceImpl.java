@@ -16,4 +16,34 @@ public class CategoryServiceImpl implements CategoryService{
 		// TODO Auto-generated method stub
 		return categoryDAO.getAll();
 	}
+
+	@Override
+	public int insertCategory(Category category) {
+		return categoryDAO.insertCategory(category);
+	}
+
+	@Override
+	public List<Category> getCategoryInPage(int pageId) {
+		return categoryDAO.getCategoryInPage(pageId);
+	}
+
+	@Override
+	public Category getCategoryById(int id) {
+		return categoryDAO.getCategoryById(id);
+	}
+
+	@Override
+	public int updateCategory(Category category) {
+		return categoryDAO.updateCategory(category);
+	}
+
+	@Override
+	public int deleteCategory(int id) {
+		return categoryDAO.deleteCategory(id);
+	}
+
+	@Override
+	public int getNumOfCategory() {
+		return categoryDAO.getNumOfCategory();
+	}
 }

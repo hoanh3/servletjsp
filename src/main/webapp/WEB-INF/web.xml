@@ -87,6 +87,42 @@
   <servlet-name>User Update Servlet</servlet-name>
   <url-pattern>/admin/user/edit</url-pattern>
 </servlet-mapping>
+
+<servlet>
+  <servlet-name>Category List Servlet</servlet-name>
+  <servlet-class>webdemo.mvc.controllers.admin.CategoryListController</servlet-class>
+</servlet>
+<servlet-mapping>
+  <servlet-name>Category List Servlet</servlet-name>
+  <url-pattern>/admin/cate/list</url-pattern>
+</servlet-mapping>
+
+<servlet>
+  <servlet-name>Category Delete Servlet</servlet-name>
+  <servlet-class>webdemo.mvc.controllers.admin.CategoryDeleteController</servlet-class>
+</servlet>
+<servlet-mapping>
+  <servlet-name>Category Delete Servlet</servlet-name>
+  <url-pattern>/admin/cate/delete</url-pattern>
+</servlet-mapping>
+
+<servlet>
+  <servlet-name>Category Update Servlet</servlet-name>
+  <servlet-class>webdemo.mvc.controllers.admin.CategoryUpdateController</servlet-class>
+</servlet>
+<servlet-mapping>
+  <servlet-name>Category Update Servlet</servlet-name>
+  <url-pattern>/admin/cate/edit</url-pattern>
+</servlet-mapping>
+
+<servlet>
+  <servlet-name>Category Add Servlet</servlet-name>
+  <servlet-class>webdemo.mvc.controllers.admin.CategoryAddController</servlet-class>
+</servlet>
+<servlet-mapping>
+  <servlet-name>Category Add Servlet</servlet-name>
+  <url-pattern>/admin/cate/add</url-pattern>
+</servlet-mapping>
   <!--Admin controller end-->
   
   <!--Client controller begin-->
