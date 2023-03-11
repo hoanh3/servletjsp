@@ -123,6 +123,42 @@
   <servlet-name>Category Add Servlet</servlet-name>
   <url-pattern>/admin/cate/add</url-pattern>
 </servlet-mapping>
+
+  <servlet>
+  	<servlet-name>Product Add Servlet</servlet-name>
+  	<servlet-class>webdemo.mvc.controllers.admin.ProductAddController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Product Add Servlet</servlet-name>
+  	<url-pattern>/admin/product/add</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>Product List Servlet</servlet-name>
+  	<servlet-class>webdemo.mvc.controllers.admin.ProductListController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Product List Servlet</servlet-name>
+  	<url-pattern>/admin/product/list</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>Product Delete Servlet</servlet-name>
+  	<servlet-class>webdemo.mvc.controllers.admin.ProductDeleteController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Product Delete Servlet</servlet-name>
+  	<url-pattern>/admin/product/delete</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>Product Update Servlet</servlet-name>
+  	<servlet-class>webdemo.mvc.controllers.admin.ProductUpdateController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Product Update Servlet</servlet-name>
+  	<url-pattern>/admin/product/edit</url-pattern>
+  </servlet-mapping>
   <!--Admin controller end-->
   
   <!--Client controller begin-->

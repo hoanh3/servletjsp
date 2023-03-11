@@ -17,52 +17,53 @@
 
         <div class="row mt-3">
           <div class="col-lg-12">
-            <button class="add-catalog"><a href="${pageContext.request.contextPath}/admin/product/add">Thêm sản phẩm</a></button>
+            <button class="add-catalog"><a href="${pageContext.request.contextPath}/admin/product/add">Add Product</a></button>
           </div>
           <div class="col-lg-12">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Danh sách sản phẩm</h5>
+                <h5 class="card-title">Product List</h5>
                 <div class="table-responsive">
                   <table class="table table-striped">
                     <thead>
                       <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Tên sản phẩm</th>
-                        <th scope="col">Hình ảnh</th>
-                        <th scope="col">ID danh mục</th>
-                        <th scope="col">Giá</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Thumbnail</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Discount</th>
                         <th scope="col">Status</th>
-                        <th scope="col">Giảm giá</th>
-                        <th scope="col">Ngày tạo</th>
-                        <th scope="col">Hành động</th>
+                        <th scope="col">Create At</th>
+                        <th scope="col">Update At</th>
+                        <th scope="col">Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                     <c:forEach items="${productlist}" var="product">
+                     <c:forEach items="${productList}" var="product">
                       <tr>
                         <th scope="row">${product.id }</th>
-                        <td>${product.name }</td>
-                        <td><img style="    width: 110px;height: 67px; object-fit: cover;border: 1px solid #fff;" src="${pageContext.request.contextPath}/view/client/assets/images/products/img-test/${product.image_link}" alt="${product.name}"></td>
-                        <td>${product.catalog_id }</td>
-                        <td>${product.price }</td>
+                        <td>${product.title }</td>
+                        <td><img style="    width: 110px;height: 67px; object-fit: cover;border: 1px solid #fff;" src="${pageContext.request.contextPath}/view/client/assets/img/product/${product.thumbnail}" alt="${product.title}"></td>
+                        <td>${product.categoryId.name}</td>
+                        <td>${product.price}</td>
+                        <td>${product.discount}</td>
                         <td>
-                        
-                        <c:choose>
-	                        <c:when test="${product.status == 1}"> 
-	                        	<c:out value="Còn hàng"/>
-	                       	</c:when>
-	                       	<c:otherwise>
-						        <c:out value="Hết hàng"/>
-						    </c:otherwise>
-                       	</c:choose>
+                          <c:choose>
+                            <c:when test="${product.availability == 1}"> 
+                              <c:out value="In Stock"/>
+                            </c:when>
+                            <c:otherwise>
+                              <c:out value="Out of Stock"/>
+                            </c:otherwise>
+                          </c:choose>
                         </td>
-                        <td>${product.discount }%</td>
-                        <td>${product.created }</td>
+                        <td>${product.createAt}</td>
+                        <td>${product.updateAt}</td>
                         <td>
-                            <button class="btn btn-danger"><a href="${pageContext.request.contextPath}/admin/product/delete?id=${product.id}">Xóa</a></button>
+                            <button class="btn btn-danger"><a href="${pageContext.request.contextPath}/admin/product/delete?id=${product.id}">Delete</a></button>
                          
-                          <button class="btn btn-success"><a href="${pageContext.request.contextPath}/admin/product/edit?id=${product.id}">Sửa</a></button>
+                          <button class="btn btn-success"><a href="${pageContext.request.contextPath}/admin/product/edit?id=${product.id}">Edit</a></button>
                         </td>
                       </tr>
                       </c:forEach>
@@ -73,6 +74,12 @@
               </div>
             </div>
           </div>
+          <div class="col-lg-12"> 
+            <div class="product__pagination">
+              <c:forEach begin = "1" end = "${endPage}" var = "i">
+                  <a href="${pageContext.request.contextPath}/admin/product/list?page-id=${i}" class="${pageActive == i ? 'active' : ''}">${i}</a>
+              </c:forEach>
+          </div> 
         </div>
         <div class="overlay toggle-menu"></div>
       </div>

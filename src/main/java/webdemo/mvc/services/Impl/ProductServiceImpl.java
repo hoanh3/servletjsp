@@ -1,6 +1,6 @@
 package webdemo.mvc.services.Impl;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -44,7 +44,7 @@ public class ProductServiceImpl implements ProductService{
 	}
 	
 	@Override
-	public Product getProductById(String productId) {
+	public Product getProductById(int productId) {
 		return productDAO.getProductById(productId);
 	}
 	
@@ -62,10 +62,38 @@ public class ProductServiceImpl implements ProductService{
 	public int getNumberOfProduct() {
 		return productDAO.getNumberOfProduct();
 	}
+
+	@Override
+	public int insertProduct(Product product) {
+		Date date = new Date();
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		date = new java.sql.Date(calendar.getTimeInMillis());
+		product.setCreateAt(date);
+		product.setUpdateAt(date);
+		return productDAO.insertProduct(product);
+	}
+
+	@Override
+	public int updateProduct(Product product) {
+		Date date = new Date();
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		date = new java.sql.Date(calendar.getTimeInMillis());
+		product.setUpdateAt(date);
+		return productDAO.updateProduct(product);
+	}
+
+	@Override
+	public int deleteProduct(int id) {
+		return productDAO.deleteProduct(id);
+	}
+	
+
 	
 	public static void main(String[] args) {
 		ProductService productService = new ProductServiceImpl();
-		Product lProducts = productService.getProductById("1");
+		Product lProducts = productService.getProductById(1);
 		List<Product> products = productService.searchProductByName("fruit");
 		for(Product product : products) {
 			System.out.println(product);

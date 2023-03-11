@@ -9,7 +9,7 @@
           <div class="col-lg-12">
             <div class="card">
               <div class="card-body">
-                <div class="card-title">Thêm sản phẩm</div>
+                <div class="card-title">Add Product</div>
                 <hr>
                 <form method="post" action="${pageContext.request.contextPath}/admin/product/add">
                 

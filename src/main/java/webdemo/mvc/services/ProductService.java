@@ -10,7 +10,7 @@ public interface ProductService {
 	
 	List<Product> getProductInPage(int pageId);
 	
-	Product getProductById(String productId);
+	Product getProductById(int productId);
 
 	List<Product> searchProductByName(String name);
 	
@@ -21,4 +21,8 @@ public interface ProductService {
 	List<Product> getTopLastest();
 	
 	List<Product> getTopSale();
+
+	int insertProduct(Product product);
+	int updateProduct(Product product);
+	int deleteProduct(int id);
 }

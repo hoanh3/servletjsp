@@ -41,7 +41,7 @@
                       <tr>
                         <td scope="row">${cate.id}</td>
                         <td>${cate.name}</td>
-        				      <td>${cate.thumbnail}</td>
+                        <td><img style="    width: 110px;height: 67px; object-fit: cover;border: 1px solid #fff;" src="${pageContext.request.contextPath}/view/client/assets/img/categories/${cate.thumbnail}" alt="${cate.name}"></td>
         				        <td>
                          <button class="btn btn-danger"><a href="${pageContext.request.contextPath}/admin/cate/delete?cate-id=${cate.id}">Delete</a></button>
                          

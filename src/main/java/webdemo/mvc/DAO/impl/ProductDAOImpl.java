@@ -23,7 +23,8 @@ public class ProductDAOImpl implements ProductDAO{
 		List<Product> listProducts = new ArrayList<>();
 		String query = "SELECT P.*, CAT.*\r\n"
 				+ "FROM dbo.product AS P\r\n"
-				+ "INNER JOIN dbo.category AS CAT ON P.[category_id] = CAT.[id];";
+				+ "INNER JOIN dbo.category AS CAT ON P.[category_id] = CAT.[id]"
+				+ "WHERE P.[delete] = 1";
 		
 		try {
 			connection = DBContext.getConnection();
@@ -59,6 +60,7 @@ public class ProductDAOImpl implements ProductDAO{
 		String query = "SELECT TOP 6 P.*, CAT.*\r\n"
 				+ "FROM dbo.product AS P\r\n"
 				+ "INNER JOIN dbo.category AS CAT ON P.[category_id] = CAT.[id]\r\n"
+				+ "WHERE P.[delete] = 1"
 				+ "ORDER BY p.[create_at] DESC";
 		
 		try {
@@ -95,6 +97,7 @@ public class ProductDAOImpl implements ProductDAO{
 		String query = "SELECT TOP 6 PR.*, CAT.*\r\n"
 				+ "FROM dbo.product AS PR \r\n"
 				+ "INNER JOIN dbo.category AS CAT ON PR.category_id = CAT.id\r\n"
+				+ "WHERE PR.[delete] = 1"
 				+ "ORDER BY ROUND((PR.price - PR.discount) / PR.price * 100, 0) DESC";
 		
 		try {
@@ -131,7 +134,7 @@ public class ProductDAOImpl implements ProductDAO{
 		String query = "SELECT PR.*, CAT.*\r\n"
 				+ "FROM dbo.product AS PR \r\n"
 				+ "INNER JOIN dbo.category AS CAT ON PR.category_id = CAT.id\r\n"
-				+ "WHERE PR.category_id = " + catId;
+				+ "WHERE PR.category_id = " + catId + " PR.[delete] = 1";
 		
 		try {
 			connection = DBContext.getConnection();
@@ -162,16 +165,17 @@ public class ProductDAOImpl implements ProductDAO{
 	}
 
 	@Override
-	public Product getProductById(String productId) {
+	public Product getProductById(int productId) {
 		Product product = new Product();
 		String query = "SELECT PR.*, CAT.*\r\n"
 				+ "FROM dbo.product AS PR \r\n"
 				+ "INNER JOIN dbo.category AS CAT ON PR.category_id = CAT.id\r\n"
-				+ "WHERE PR.id = " + productId;
+				+ "WHERE PR.id = ? AND PR.[delete] = 1";
 		
 		try {
 			connection = DBContext.getConnection();
 			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setInt(1, productId);
 			resultSet = preparedStatement.executeQuery();
 			while(resultSet.next()) {
 				int id = resultSet.getInt(1);
@@ -202,7 +206,7 @@ public class ProductDAOImpl implements ProductDAO{
 		String query = "SELECT PR.*, CAT.*\r\n"
 				+ "FROM dbo.product AS PR \r\n"
 				+ "INNER JOIN dbo.category AS CAT ON PR.category_id = CAT.id\r\n"
-				+ "WHERE PR.title LIKE N'%" + name + "%'";
+				+ "WHERE PR.title LIKE N'%" + name + "%'" + "AND PR.[delete] = 1";
 		
 		try {
 			connection = DBContext.getConnection();
@@ -238,6 +242,7 @@ public class ProductDAOImpl implements ProductDAO{
 		String query = "SELECT P.*, CAT.*\r\n"
 				+ "FROM [dbo].[product] AS P\r\n"
 				+ "INNER JOIN dbo.category AS CAT ON P.category_id = CAT.id\r\n"
+				+ "WHERE P.[delete] = 1"
 				+ "ORDER BY P.[id]\r\n"
 				+ "OFFSET ? ROWS\r\n"
 				+ "FETCH NEXT 9 ROWS ONLY";
@@ -275,8 +280,8 @@ public class ProductDAOImpl implements ProductDAO{
 	@Override
 	public int getNumberOfProduct() {
 		int total = 0;
-		String query = "SELECT COUNT(*) FROM dbo.product";
-		
+		String query = "SELECT COUNT(*) FROM dbo.[product]"
+					+ "WHERE [delete] = 1";
 		try {
 			connection = DBContext.getConnection();
 			preparedStatement = connection.prepareStatement(query);
@@ -290,12 +295,100 @@ public class ProductDAOImpl implements ProductDAO{
 		}
 		return total;
 	}
+
+	@Override
+	public int insertProduct(Product product) {
+		int status = 0;
+		String query = "INSERT INTO [dbo].[product]\r\n"
+				+ "([title],[price],[discount],[thumbnail],[description],[create_at],[update_at],[category_id],[delete],[availability])\r\n"
+				+ "VALUES \r\n"
+				+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		try {
+			connection = DBContext.getConnection();
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, product.getTitle());
+			preparedStatement.setInt(2, product.getPrice());
+			preparedStatement.setInt(3, product.getDiscount());
+			preparedStatement.setString(4, product.getThumbnail());
+			preparedStatement.setString(5, product.getDescription());
+			preparedStatement.setDate(6, (java.sql.Date) product.getCreateAt());
+			preparedStatement.setDate(7, (java.sql.Date) product.getUpdateAt());
+			preparedStatement.setInt(8, product.getCategoryId().getId());
+			preparedStatement.setInt(9, product.getDelete());
+			preparedStatement.setInt(10, product.getAvailability());
+			status = preparedStatement.executeUpdate();
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("loi productDao");
+		}
+		return status;
+	}
+
+	@Override
+	public int updateProduct(Product product) {
+		int status = 0;
+		String query = "UPDATE [dbo].[product]\r\n"
+				+ "SET\r\n"
+				+ "    [title] = ?\r\n"
+				+ "    ,[price] = ?\r\n"
+				+ "    ,[discount] = ?\r\n"
+				+ "    ,[thumbnail] = ?\r\n"
+				+ "    ,[description] = ?\r\n"
+				+ "    ,[create_at] = ?\r\n"
+				+ "    ,[update_at] = ?\r\n"
+				+ "    ,[category_id] = ?\r\n"
+				+ "    ,[delete] = ?\r\n"
+				+ "    ,[availability] = ?\r\n"
+				+ "WHERE [id] = ?";
+		try {
+			connection = DBContext.getConnection();
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, product.getTitle());
+			preparedStatement.setInt(2, product.getPrice());
+			preparedStatement.setInt(3, product.getDiscount());
+			preparedStatement.setString(4, product.getThumbnail());
+			preparedStatement.setString(5, product.getDescription());
+			preparedStatement.setDate(6, (java.sql.Date) product.getCreateAt());
+			preparedStatement.setDate(7, (java.sql.Date) product.getUpdateAt());
+			preparedStatement.setInt(8, product.getCategoryId().getId());
+			preparedStatement.setInt(9, product.getDelete());
+			preparedStatement.setInt(10, product.getAvailability());
+			preparedStatement.setInt(10, product.getId());
+			status = preparedStatement.executeUpdate();
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("loi productDao");
+		}
+		return status;
+	}
+
+	@Override
+	public int deleteProduct(int id) {
+		int status = 0;
+		String query = "UPDATE [dbo].[product]"
+				+ "SET [delete] = 0"
+				+ "WHERE [id] = ?";
+		try {
+			connection = DBContext.getConnection();
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setInt(1, id);
+			status = preparedStatement.executeUpdate();
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("loi productDao delete");
+		}
+		return status;
+	}
+	
+
 	
 	public static void main(String[] args) {
 		ProductDAO productDAO = new ProductDAOImpl();
-		List<Product> ls = productDAO.getProductInPage(1);
-		for(Product p : ls) {
-			System.out.println(p);
-		}
+		
+//		List<Product> ls = productDAO.getAll();
+//		for(Product it : ls) {
+//			System.out.println(it);
+//		}
+		System.out.println(productDAO.getNumberOfProduct());
 	}
 }

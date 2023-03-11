@@ -21,13 +21,12 @@
 	                    <label for="input-2">Name</label>
 	                    <input type="text" class="form-control" id="input-2" placeholder="Name" name="cate-name" value="${category.name}">
 	                  </div>
-					  <div class="form-group">
+					          <div class="form-group">
 	                    <label for="input-3">Thumbnail</label>
 	                    <input type="text" class="form-control" id="input-3" placeholder="Name" name="cate-thumbnail" value="${category.thumbnail}">
 	                  </div>
 	                  <div class="form-footer">
 	                      <button class="btn btn-danger"><a href="${pageContext.request.contextPath}/admin/cate/list">Cancel</a></button>
-                         
                      		<button type="submit" class="btn btn-success">Update</button>
 	                   </div> 
 	               

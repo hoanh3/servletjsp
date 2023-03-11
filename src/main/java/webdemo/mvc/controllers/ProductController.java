@@ -22,7 +22,7 @@ public class ProductController extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String pid = request.getParameter("pid");
-		Product product = productService.getProductById(pid);
+		Product product = productService.getProductById(Integer.valueOf(pid));
 		request.setAttribute("pDetail", product);
 		
 		String catId = String.valueOf(product.getCategoryId().getId());
