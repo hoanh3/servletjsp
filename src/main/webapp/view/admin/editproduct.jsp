@@ -9,83 +9,65 @@
           <div class="col-lg-12">
             <div class="card">
               <div class="card-body">
-                <div class="card-title">Sửa sản phẩm</div>
+                <div class="card-title">Edit Product</div>
                 <hr>
                 <form method="post" action="${pageContext.request.contextPath}/admin/product/edit">
                 
                  <div class="form-group">
-                    <label for="input-1">Mã sản phẩm</label>
-                    <input type="text" class="form-control" readonly="readonly" id="input-1" placeholder="Mã sản phẩm" name="product-sku" value="${product.id}">
+                    <label for="input-1">Product Code</label>
+                    <input type="text" class="form-control" readonly="readonly" id="input-1" placeholder="Product Code" name="product-id" value="${product.id}">
                   </div>
                   
                   <div class="form-group">
-                    <label for="input-1">Tên sản phẩm</label>
-                    <input type="text" class="form-control" id="input-1" placeholder="Tên sản phẩm" name="product-name" value="${product.name}">
+                    <label for="input-2">Title</label>
+                    <input type="text" class="form-control" id="input-2" placeholder="Title" name="product-title" value="${product.title}">
                   </div>
-                  
-        
                   <div class="form-group">
-	                  <label for="input-2">Chuyên mục</label>
+                    <label for="input-2">Price</label>
+                    <input type="text" class="form-control" id="input-2" placeholder="Price" name="product-price" value="${product.price}">
+                  </div>
+                  <div class="form-group">
+                    <label for="input-3">Discount</label>
+                    <input type="text" class="form-control" id="input-3" placeholder="Discount" name="product-discount" value="${product.discount}">
+                  </div>
+                  <div class="form-group">
+	                  <label for="input-5">Category</label>
 	                  <div>
-	                    <select class="form-control valid" id="input-6" name="product-cate" aria-invalid="false">
+	                    <select class="form-control valid" id="input-5" name="product-cate" aria-invalid="false">
 	                    <c:forEach items="${catelist}" var="cate">
-	                        <option value="${cate.id }" selected="selected">${cate.name }</option>
+	                        <option value="${cate.id }">${cate.name }</option>
 	                    </c:forEach>
 	                    </select>
 	                  </div>
 	                </div>
-	                 <div class="form-group">
-                    <label for="input-1">Ngày</label> 
-                    <input type="date" class="form-control" id="input-1" placeholder="Ngày đăng" name="product-day" value="${product.created}">
+                  <div class="form-group">
+                    <label for="input-6">Create At</label> 
+                    <input type="date" class="form-control the-date" id="input-6" placeholder="Create At" name="create-at" value="${product.createAt}">
+                  </div>
+                  <div class="form-group">
+                    <label for="input-8">Availability</label>
+                    <div>
+                      <select class="form-control valid" id="input-8" name="product-status" required aria-invalid="false">
+                          <option value="1">In Stock</option>
+                          <option value="0">Out of Stock</option>
+                      </select>
+                    </div>
                   </div>
 	                <div class="form-group">
-                    <label for="input-1">Giá</label>
-                    <input type="text" class="form-control" id="input-1" placeholder="Giá" name="product-price" value="${product.price}">
+                    <label for="input-9" class="col-form-label">Description</label>
+                    <div>
+                      <textarea class="form-control" rows="4" id="input-9" name="product-desc">${product.description}</textarea>
+                    </div>
                   </div>
-                  
-                    <div class="form-group">
-	                  <label for="input-2">Trạng thái</label>
-	                  <div>
-	                    <select class="form-control valid" id="input-6" name="product-status" required aria-invalid="false">
-	                        <option value="1">Còn hàng</option>
-	                        <option value="0" >Hết hàng</option>
-	                    </select>
-	                  </div>
-	                </div>
-	                 <div class="form-group">
-		                <label for="input-2">Giảm giá</label>
-		                <div class="input-group">
-		                <input type="text" class="form-control" placeholder="Giảm ... %" name="product-discount" value="${product.discount}">
-		                <div class="input-group-append">
-		                <button class="btn btn-light" type="button">%</button>
-		                </div>
-		                </div>
-	              </div>
-                 <div class="form-group">
-                  <label for="input-2" class="col-form-label">Mô tả</label>
-                  <div>
-                    <textarea class="form-control" rows="4" id="input-17" name="product-desc">${product.description}</textarea>
+                  <!-- <div class="form-group">
+                    <label for="input-4">Thumbnail</label>
+                    <input type="file" class="form-control" name="product-thumbnail" id="input-4">
+                  </div> -->
+                  <div class="form-footer">
+                        <button class="btn btn-danger"><a href="${pageContext.request.contextPath}/admin/product/list">Cancel</a></button>
+                            
+                        <button type="submit" class="btn btn-success">Update</button>
                   </div>
-                </div>
-                <div class="form-group">
-                  <label for="input-2" class="col-form-label">Nội dung</label>
-                  <div>
-                    <textarea class="form-control" rows="4" id="input-17" name="product-content">${product.content}</textarea>
-                  </div>
-                </div>
-                
-                 <div class="form-group">
-                    <label for="input-1">Ảnh đại diện</label>
-                    <input type="text" class="form-control" id="input-1" placeholder="Tên hình" name="product-image" value="${product.image_link}">
-                  </div>
-              
-              
-          
-               <div class="form-footer">
-                     <button class="btn btn-danger"><a href="${pageContext.request.contextPath}/admin/product/list">Hủy</a></button>
-                         
-                     <button type="submit" class="btn btn-success">Cập nhật</button>
-                </div>
                 </form>
               </div>
             </div>

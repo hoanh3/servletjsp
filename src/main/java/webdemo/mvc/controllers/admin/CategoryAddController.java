@@ -32,18 +32,18 @@ public class CategoryAddController extends HttpServlet{
 		for (Part part : req.getParts()) {
 			part.write(this.getFolderUpload().getAbsolutePath() + File.separator + fileName);
 		}
-		try {
-			int status = categoryService.insertCategory(new Category(0, name, fileName));
-			if(status != 0) {
-				resp.sendRedirect(req.getContextPath() + "/admin/cate/list");
-			} else {
-				System.out.println("khong thanh cong");
-				RequestDispatcher dispatcher = req.getRequestDispatcher("/view/admin/addcate.jsp");
-				dispatcher.forward(req, resp);
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+//		try {
+//			int status = categoryService.insertCategory(new Category(0, name, fileName));
+//			if(status != 0) {
+//				resp.sendRedirect(req.getContextPath() + "/admin/cate/list");
+//			} else {
+//				System.out.println("khong thanh cong");
+//				RequestDispatcher dispatcher = req.getRequestDispatcher("/view/admin/addcate.jsp");
+//				dispatcher.forward(req, resp);
+//			}
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//		}
 	}
 	
 	public File getFolderUpload() {

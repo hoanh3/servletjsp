@@ -4,9 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import webdemo.mvc.DAO.CategoryDAO;
 import webdemo.mvc.DAO.ProductDAO;
 import webdemo.mvc.context.DBContext;
 import webdemo.mvc.models.Category;
@@ -134,11 +136,12 @@ public class ProductDAOImpl implements ProductDAO{
 		String query = "SELECT PR.*, CAT.*\r\n"
 				+ "FROM dbo.product AS PR \r\n"
 				+ "INNER JOIN dbo.category AS CAT ON PR.category_id = CAT.id\r\n"
-				+ "WHERE PR.category_id = " + catId + " PR.[delete] = 1";
+				+ "WHERE PR.category_id = ? AND PR.[delete] = 1";
 		
 		try {
 			connection = DBContext.getConnection();
 			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, catId);
 			resultSet = preparedStatement.executeQuery();
 			while(resultSet.next()) {
 				int id = resultSet.getInt(1);
@@ -329,16 +332,13 @@ public class ProductDAOImpl implements ProductDAO{
 		int status = 0;
 		String query = "UPDATE [dbo].[product]\r\n"
 				+ "SET\r\n"
-				+ "    [title] = ?\r\n"
-				+ "    ,[price] = ?\r\n"
-				+ "    ,[discount] = ?\r\n"
-				+ "    ,[thumbnail] = ?\r\n"
-				+ "    ,[description] = ?\r\n"
-				+ "    ,[create_at] = ?\r\n"
-				+ "    ,[update_at] = ?\r\n"
-				+ "    ,[category_id] = ?\r\n"
-				+ "    ,[delete] = ?\r\n"
-				+ "    ,[availability] = ?\r\n"
+				+ "    [title] = ?,\r\n"
+				+ "    [price] = ?,\r\n"
+				+ "    [discount] = ?,\r\n"
+				+ "    [description] = ?,\r\n"
+				+ "    [update_at] = ?,\r\n"
+				+ "    [category_id] = ?,\r\n"
+				+ "    [availability] = ?\r\n"
 				+ "WHERE [id] = ?";
 		try {
 			connection = DBContext.getConnection();
@@ -346,18 +346,16 @@ public class ProductDAOImpl implements ProductDAO{
 			preparedStatement.setString(1, product.getTitle());
 			preparedStatement.setInt(2, product.getPrice());
 			preparedStatement.setInt(3, product.getDiscount());
-			preparedStatement.setString(4, product.getThumbnail());
-			preparedStatement.setString(5, product.getDescription());
-			preparedStatement.setDate(6, (java.sql.Date) product.getCreateAt());
-			preparedStatement.setDate(7, (java.sql.Date) product.getUpdateAt());
-			preparedStatement.setInt(8, product.getCategoryId().getId());
-			preparedStatement.setInt(9, product.getDelete());
-			preparedStatement.setInt(10, product.getAvailability());
-			preparedStatement.setInt(10, product.getId());
+			preparedStatement.setString(4, product.getDescription());
+			preparedStatement.setDate(5, (java.sql.Date) product.getUpdateAt());
+			preparedStatement.setInt(6, product.getCategoryId().getId());
+			preparedStatement.setInt(7, product.getAvailability());
+			preparedStatement.setInt(8, product.getId());
 			status = preparedStatement.executeUpdate();
 		} catch (Exception e) {
 			// TODO: handle exception
-			System.out.println("loi productDao");
+			e.printStackTrace();
+			System.out.println("loi productDao update");
 		}
 		return status;
 	}
@@ -383,12 +381,13 @@ public class ProductDAOImpl implements ProductDAO{
 
 	
 	public static void main(String[] args) {
+		Date date = new Date();
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		date = new java.sql.Date(calendar.getTimeInMillis());
 		ProductDAO productDAO = new ProductDAOImpl();
-		
-//		List<Product> ls = productDAO.getAll();
-//		for(Product it : ls) {
-//			System.out.println(it);
-//		}
-		System.out.println(productDAO.getNumberOfProduct());
+		CategoryDAO categoryDAO = new CategoryDAOImpl();
+		int status = productDAO.updateProduct(new Product(14, "test2", 123, 123, "test.jpg", "test2", date, date, categoryDAO.getCategoryById(1), 1, 1));
+		System.out.println(status);
 	}
 }
