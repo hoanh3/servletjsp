@@ -181,6 +181,24 @@
   </servlet-mapping>
   
   <servlet>
+  	<servlet-name>Shop Cart servlet</servlet-name>
+  	<servlet-class>webdemo.mvc.controllers.ShopCartController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Shop Cart servlet</servlet-name>
+  	<url-pattern>/shopcart</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>Cart servlet</servlet-name>
+  	<servlet-class>webdemo.mvc.controllers.CartController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Cart servlet</servlet-name>
+  	<url-pattern>/addcart</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
   	<servlet-name>Category servlet</servlet-name>
   	<servlet-class>webdemo.mvc.controllers.CategoryController</servlet-class>
   </servlet>

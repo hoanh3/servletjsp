@@ -2,7 +2,13 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>  
+<%@ page import="webdemo.mvc.models.Cart" %>
 <c:url value = "/view/client/assets" var="url"/>
+
+<% 
+    String cartSize = String.valueOf(session.getAttribute("cartSize"));
+    out.println("Giá trị của biến cartSize là: " + cartSize);
+    %>
 
 <!DOCTYPE html>
 <html>
@@ -31,6 +37,8 @@
     <link rel="stylesheet" href="${url}/css/custom.css" type="text/css">
 </head>
 <body>
+    <!-- <c:set var="cartSize" scope="session" value="${}"/>
+    <c:set var="cartTotalMoney" scope="session" value="${}"/> -->
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
@@ -45,9 +53,9 @@
         <div class="humberger__menu__cart">
             <ul>
                 <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                <li><a href="#"><i class="fa fa-shopping-bag"></i> <span><%= String.valueOf(session.getAttribute("cartSize")) %></span></a></li>
             </ul>
-            <div class="header__cart__price">item: <span>$150.00</span></div>
+            <div class="header__cart__price">item: <span><%= String.valueOf(session.getAttribute("cartTotalMoney")) %></span></div>
         </div>
         <div class="humberger__menu__widget">
             <div class="header__top__right__language">
@@ -75,7 +83,7 @@
                 <li><a href="#">Pages</a>
                     <ul class="header__menu__dropdown">
                         <li><a href="./shop-details.html">Shop Details</a></li>
-                        <li><a href="./shoping-cart.html">Shoping Cart</a></li>
+                        <li><a href="${pageContext.request.contextPath}/shopcart">Shoping Cart</a></li>
                         <li><a href="./checkout.html">Check Out</a></li>
                         <li><a href="./blog-details.html">Blog Details</a></li>
                     </ul>
@@ -158,7 +166,7 @@
                             <li><a href="#">Pages</a>
                                 <ul class="header__menu__dropdown">
                                     <li><a href="./shop-details.html">Shop Details</a></li>
-                                    <li><a href="./shoping-cart.html">Shoping Cart</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/shopcart">Shoping Cart</a></li>
                                     <li><a href="./checkout.html">Check Out</a></li>
                                     <li><a href="./blog-details.html">Blog Details</a></li>
                                 </ul>
@@ -172,9 +180,9 @@
                     <div class="header__cart">
                         <ul>
                             <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                            <li><a href="${pageContext.request.contextPath}/shopcart"><i class="fa fa-shopping-bag"></i> <span><%= String.valueOf(session.getAttribute("cartSize")) %></span></a></li>
                         </ul>
-                        <div class="header__cart__price">item: <span>$150.00</span></div>
+                        <div class="header__cart__price">item: <span><%= String.valueOf(session.getAttribute("cartTotalMoney")) %></span></div>
                     </div>
                 </div>
             </div>

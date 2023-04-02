@@ -8,6 +8,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import webdemo.mvc.models.Cart;
 import webdemo.mvc.models.Category;
 import webdemo.mvc.models.Product;
 import webdemo.mvc.services.CategoryService;
@@ -34,6 +36,7 @@ public class HomeController extends HttpServlet{
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/view/client/index.jsp");
 		dispatcher.forward(request, response);
+		
 		
 	}
 }

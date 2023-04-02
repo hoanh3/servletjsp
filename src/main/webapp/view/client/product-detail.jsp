@@ -111,15 +111,18 @@
                         <p>Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam
                             vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet
                             quam vehicula elementum sed sit amet dui. Proin eget tortor risus.</p>
-                        <div class="product__details__quantity">
-                            <div class="quantity">
-                                <div class="pro-qty">
-                                    <input type="text" value="1">
+                        <div class="action-box">
+                            <form action="${pageContext.request.contextPath}/addcart" class="product__details__quantity">
+                                <input type="hidden" name="pid" value="${pDetail.id}">
+                                <div class="quantity" style="display: inline-block;">
+                                    <div class="pro-qty">
+                                        <input type="text" value="1" name="num">
+                                    </div>
                                 </div>
-                            </div>
+                                <button type="submit" class="primary-btn" style="display: inline-block; border: none;">ADD TO CARD</button>
+                            </form>
+                            <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                         </div>
-                        <a href="#" class="primary-btn">ADD TO CARD</a>
-                        <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                         <ul>
                             <li><b>Availability</b> <span>${pDetail.availability eq 1 ? "In Stock" : "
                                 Out of Stock"}</span></li>
@@ -197,7 +200,7 @@
                                     <ul class="product__item__pic__hover">
                                         <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                         <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                        <li><a href="${pageContext.request.contextPath}/addcart?pid=${pro.id}&num=1"><i class="fa fa-shopping-cart"></i></a></li>
                                     </ul>
                                 </div>
                                 <div class="product__item__text">
