@@ -47,6 +47,23 @@ public class Cart {
 		}
 	}
 	
+	public void changeNumById(int id, int diff) {
+		Item it = null;
+		for(Item item : items) {
+			if(item.getProduct().getId() == id) {
+				int newNum = item.getNum() + diff;
+				if(newNum <= 0) {
+					it = item;
+					break;
+				} else {
+					item.setNum(newNum);
+					return;
+				}
+			}
+		}
+		items.remove(it);
+	}
+	
 	//xoa item
 	public void removeItem(int id) {
 		if(this.getItemById(id) != null) {

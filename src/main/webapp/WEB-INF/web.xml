@@ -198,6 +198,15 @@
   	<url-pattern>/addcart</url-pattern>
   </servlet-mapping>
   
+   <servlet>
+  	<servlet-name>Cart Process servlet</servlet-name>
+  	<servlet-class>webdemo.mvc.controllers.CartProcessController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Cart Process servlet</servlet-name>
+  	<url-pattern>/processcart</url-pattern>
+  </servlet-mapping>
+  
   <servlet>
   	<servlet-name>Category servlet</servlet-name>
   	<servlet-class>webdemo.mvc.controllers.CategoryController</servlet-class>

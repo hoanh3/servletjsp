@@ -98,8 +98,10 @@
                                         </td>
                                         <td class="shoping__cart__quantity">
                                             <div class="quantity">
-                                                <div class="pro-qty">
+                                                <div class="pro-qty" data-id="${item.product.id}">
+                                                    <a href="${pageContext.request.contextPath}/processcart?pid=${item.product.id}&act=-1"><span class="dec qtybtn">-</span></a>
                                                     <input type="text" value="${item.num}">
+                                                    <a href="${pageContext.request.contextPath}/processcart?pid=${item.product.id}&act=1"><span class="inc qtybtn">+</span></a>
                                                 </div>
                                             </div>
                                         </td>
@@ -107,7 +109,9 @@
                                             ${item.price * item.num}
                                         </td>
                                         <td class="shoping__cart__item__close">
-                                            <span class="icon_close"></span>
+                                            <a href="${pageContext.request.contextPath}/processcart?pid=${item.product.id}&act=delete">
+                                                <span class="icon_close"></span>
+                                            </a>
                                         </td>
                                     </tr>
                                 </c:forEach>

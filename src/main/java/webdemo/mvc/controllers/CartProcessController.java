@@ -11,13 +11,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import webdemo.mvc.models.Cart;
 import webdemo.mvc.models.Item;
-import webdemo.mvc.models.Product;
-import webdemo.mvc.services.ProductService;
-import webdemo.mvc.services.Impl.ProductServiceImpl;
 
-public class CartController extends HttpServlet{
-	private ProductService productService = new ProductServiceImpl();
-	
+public class CartProcessController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession(true);
@@ -28,15 +23,21 @@ public class CartController extends HttpServlet{
 		} else {
 			cart = new Cart();
 		}
-		String num = req.getParameter("num");
 		String pid = req.getParameter("pid");
-		try {
-			Product product = productService.getProductById(Integer.parseInt(pid));
-			Item item = new Item(product, Integer.parseInt(num), product.getDiscount());
-			cart.addItem(item);
-		} catch (Exception e) {
-			num = "1";
+		String act = req.getParameter("act");
+		if(act != null) {
+			if(act.compareTo("delete") == 0) {
+				cart.removeItem(Integer.valueOf(pid));
+			} else {
+				try {
+					cart.changeNumById(Integer.valueOf(pid), Integer.valueOf(act));			
+				} catch (NumberFormatException e) {
+					// TODO: handle exception
+					System.out.println(act);
+				}
+			}
 		}
+
 		List<Item> listItem = cart.getItems();
 		req.setAttribute("listItem", listItem);
 		session.setAttribute("cart", cart);
