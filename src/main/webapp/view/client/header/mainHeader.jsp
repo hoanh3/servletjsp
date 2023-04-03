@@ -40,6 +40,8 @@
             }
             String cartSize=String.valueOf(cart.getCartSize());
             String cartTotalMoney=String.valueOf(cart.getTotalMoney());
+            session.setAttribute("cartSize", cartSize);
+            session.setAttribute("cartTotalMoney", cartTotalMoney);
             out.println("<input type='hidden' id='cartSize' name='cartSize' value='"+ cartSize +"'>");
             out.println("<input type='hidden' id='cartTotalMoney' name='cartTotalMoney' value='"+ cartTotalMoney +"'>");
         %>
@@ -75,10 +77,10 @@
                 </div>
                 <div class="header__top__right__auth">
                     <c:if test = "${sessionScope.user != null}">
-                        <a href="logout"><i class="fa fa-user"></i> Logout</a>
+                        <a href="${pageContext.request.contextPath}/logout"><i class="fa fa-user"></i> Logout</a>
                     </c:if>
                     <c:if test = "${sessionScope.user == null}">
-                        <a href="login"><i class="fa fa-user"></i> Login</a>
+                        <a href="${pageContext.request.contextPath}/login"><i class="fa fa-user"></i> Login</a>
                     </c:if>
                 </div>
             </div>

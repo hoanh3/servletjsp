@@ -58,5 +58,10 @@ public class UserServiceImpl implements UserService{
 	public int getNumOfUser() {
 		return userDAO.getNumOfUser();
 	}
+
+	@Override
+	public int getLastestUserId() {
+		return userDAO.getLastestUserId();
+	}
 	
 }

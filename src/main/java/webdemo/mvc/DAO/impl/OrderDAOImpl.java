@@ -10,6 +10,7 @@ import webdemo.mvc.DAO.OrderDAO;
 import webdemo.mvc.context.DBContext;
 import webdemo.mvc.models.Cart;
 import webdemo.mvc.models.Item;
+import webdemo.mvc.models.Order;
 import webdemo.mvc.models.User;
 
 public class OrderDAOImpl implements OrderDAO{
@@ -18,52 +19,55 @@ public class OrderDAOImpl implements OrderDAO{
 	ResultSet resultSet = null;
 
 	@Override
-	public int addOrder(User user, Cart cart) {
+	public int addOrder(User user, Cart cart, Order order) {
 		String query = "INSERT INTO [dbo].[order]\r\n"
 				+ "( [fullname],[email],[phonenumber],[address],[note],[order_date],[status],[total_money],[user_id])\r\n"
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
-		String getOrderIDQuery = "SELECT TOP 1 [id] FROM [dbo].[user]\r\n"
+		String getOrderIDQuery = "SELECT TOP 1 [id] FROM [dbo].[order]\r\n"
 				+ "ORDER BY [id] DESC";
 		String insertOrderDetail = "INSERT INTO [dbo].[order_detail]\\r\\n\"\r\n"
 				+ "				+ \"( [order_id],[product_id],[price],[num])\\r\\n\"\r\n"
 				+ "				+ \"VALUES (?, ?, ?, ?)";
 		int status = 0;
 		int oid = 0;
-		Date date = new Date();
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(date);
-		date = new java.sql.Date(calendar.getTimeInMillis());
 		try {
 			connection = DBContext.getConnection();
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setString(1, user.getFullname());
 			preparedStatement.setString(2, user.getEmail());
 			preparedStatement.setString(3, user.getPhoneNumber());
-			preparedStatement.setString(4, user.getAddress());
-			preparedStatement.setString(5, "");
-			preparedStatement.setDate(6, (java.sql.Date) date);
+			preparedStatement.setString(4, order.getAddress());
+			preparedStatement.setString(5, order.getNote());
+			preparedStatement.setDate(6, (java.sql.Date) order.getOrderDate());
 			preparedStatement.setString(7, "1");
 			preparedStatement.setString(8, String.valueOf(cart.getTotalMoney()));
 			preparedStatement.setString(9, String.valueOf(user.getId()));
 			status = preparedStatement.executeUpdate();
 			if(status > 0) {
-				preparedStatement = connection.prepareStatement(getOrderIDQuery);
-				resultSet = preparedStatement.executeQuery();
-				while(resultSet.next()) {
-					oid = resultSet.getInt(1);
-				}
-				for(Item item : cart.getItems()) {
-					preparedStatement = connection.prepareStatement(insertOrderDetail);
-					preparedStatement.setInt(1, oid);
-					preparedStatement.setInt(2, item.getProduct().getId());
-					preparedStatement.setFloat(3, item.getPrice());
-					preparedStatement.setInt(4, item.getNum());
-					status = preparedStatement.executeUpdate();
+				try {
+					preparedStatement = connection.prepareStatement(getOrderIDQuery);
+					resultSet = preparedStatement.executeQuery();
+					while(resultSet.next()) {
+						oid = resultSet.getInt(1);
+					}
+					for(Item item : cart.getItems()) {
+						preparedStatement = connection.prepareStatement(insertOrderDetail);
+						preparedStatement.setInt(1, oid);
+						preparedStatement.setInt(2, item.getProduct().getId());
+						preparedStatement.setFloat(3, item.getPrice());
+						preparedStatement.setInt(4, item.getNum());
+						status = preparedStatement.executeUpdate();
+					}
+					
+				} catch (Exception e) {
+					// TODO: handle exception
+					System.out.println("loi");
 				}
 			}
 		} catch (Exception e) {
  			// TODO: handle exception
+			System.out.println("loi ngoai");
 		}
 		return status;
 	}

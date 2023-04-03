@@ -221,5 +221,16 @@
     
     $('.cartSize')[0].innerHTML = $('#cartSize')[0].value;
     $('.cartPrice')[0].innerHTML = $('#cartTotalMoney')[0].value;
-
+	
+	
+    var createAccCheckbox = $('#acc');
+    // create account checkbox
+    createAccCheckbox.on('click', function () {
+        if (this.checked == true){
+            $('#password').prop('required',true);
+        } else {
+            $('#password').prop('required',false);
+        }
+    })
+    
 })(jQuery);

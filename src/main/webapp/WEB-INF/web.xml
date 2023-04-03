@@ -207,6 +207,15 @@
   	<url-pattern>/processcart</url-pattern>
   </servlet-mapping>
   
+   <servlet>
+  	<servlet-name>Check Out servlet</servlet-name>
+  	<servlet-class>webdemo.mvc.controllers.CheckOutController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Check Out servlet</servlet-name>
+  	<url-pattern>/checkout</url-pattern>
+  </servlet-mapping>
+  
   <servlet>
   	<servlet-name>Category servlet</servlet-name>
   	<servlet-class>webdemo.mvc.controllers.CategoryController</servlet-class>

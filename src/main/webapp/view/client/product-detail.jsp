@@ -116,7 +116,9 @@
                                 <input type="hidden" name="pid" value="${pDetail.id}">
                                 <div class="quantity" style="display: inline-block;">
                                     <div class="pro-qty">
+                                        <span class="dec qtybtn">-</span>
                                         <input type="text" value="1" name="num">
+                                        <span class="inc qtybtn">+</span>
                                     </div>
                                 </div>
                                 <button type="submit" class="primary-btn" style="display: inline-block; border: none;">ADD TO CARD</button>

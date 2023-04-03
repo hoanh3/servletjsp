@@ -146,7 +146,7 @@
                             <li>Subtotal <span>${cart.getTotalMoney()}</span></li>
                             <li>Total <span>${cart.getTotalMoney()}</span></li>
                         </ul>
-                        <a href="#" class="primary-btn">PROCEED TO CHECKOUT</a>
+                        <a href="${pageContext.request.contextPath}/checkout" class="primary-btn">PROCEED TO CHECKOUT</a>
                     </div>
                 </div>
             </div>

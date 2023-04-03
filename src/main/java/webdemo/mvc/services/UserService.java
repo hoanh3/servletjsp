@@ -16,4 +16,6 @@ public interface UserService {
 	
 	List<User> getUserInPage(int pageId);
 	int getNumOfUser();
+
+	int getLastestUserId();
 }

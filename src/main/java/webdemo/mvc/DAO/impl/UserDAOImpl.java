@@ -233,4 +233,23 @@ public class UserDAOImpl implements UserDAO{
 			System.out.println(user);
 		}
 	}
+
+	@Override
+	public int getLastestUserId() {
+		String query = "SELECT TOP 1 [id] FROM [dbo].[user]\r\n"
+				+ "ORDER BY [id] DESC";
+		int uid = -1;
+		try {
+			connection = DBContext.getConnection();
+			preparedStatement = connection.prepareStatement(query);
+			resultSet = preparedStatement.executeQuery();
+			while(resultSet.next()) {
+				uid = resultSet.getInt(1);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("loi userDao");
+		}
+		return uid;
+	}
 }
