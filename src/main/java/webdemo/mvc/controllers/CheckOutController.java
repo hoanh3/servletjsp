@@ -1,6 +1,7 @@
 package webdemo.mvc.controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -62,6 +63,8 @@ public class CheckOutController extends HttpServlet{
 			userService.insert(fullname, email, password);
 			user = userService.getUserById(userService.getLastestUserId());
 			user.setAddress(address);
+			user.setPhoneNumber(phoneNumber);
+			userService.updateUser(user);
 		}
 		Cart cart = (Cart) session.getAttribute("cart");
 		Date date = new Date();
@@ -73,6 +76,8 @@ public class CheckOutController extends HttpServlet{
 		try {
 			int status = orderService.addOrder(user, cart, order);
 			if(status != 0) {
+				cart.setItems(new ArrayList<>());
+			} else {
 				
 			}
 		} catch (Exception e) {

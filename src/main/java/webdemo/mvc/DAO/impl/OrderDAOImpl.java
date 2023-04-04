@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import webdemo.mvc.DAO.OrderDAO;
+import webdemo.mvc.DAO.OrderDetailDAO;
 import webdemo.mvc.context.DBContext;
 import webdemo.mvc.models.Cart;
 import webdemo.mvc.models.Item;
@@ -14,6 +15,7 @@ import webdemo.mvc.models.Order;
 import webdemo.mvc.models.User;
 
 public class OrderDAOImpl implements OrderDAO{
+	OrderDetailDAO orderDetailDAO = new OrderDetailDAOImpl();
 	Connection connection = null;
 	PreparedStatement preparedStatement = null;
 	ResultSet resultSet = null;
@@ -45,25 +47,12 @@ public class OrderDAOImpl implements OrderDAO{
 			preparedStatement.setString(9, String.valueOf(user.getId()));
 			status = preparedStatement.executeUpdate();
 			if(status > 0) {
-				try {
-					preparedStatement = connection.prepareStatement(getOrderIDQuery);
-					resultSet = preparedStatement.executeQuery();
-					while(resultSet.next()) {
-						oid = resultSet.getInt(1);
-					}
-					for(Item item : cart.getItems()) {
-						preparedStatement = connection.prepareStatement(insertOrderDetail);
-						preparedStatement.setInt(1, oid);
-						preparedStatement.setInt(2, item.getProduct().getId());
-						preparedStatement.setFloat(3, item.getPrice());
-						preparedStatement.setInt(4, item.getNum());
-						status = preparedStatement.executeUpdate();
-					}
-					
-				} catch (Exception e) {
-					// TODO: handle exception
-					System.out.println("loi");
+				preparedStatement = connection.prepareStatement(getOrderIDQuery);
+				resultSet = preparedStatement.executeQuery();
+				while(resultSet.next()) {
+					oid = resultSet.getInt(1);
 				}
+				orderDetailDAO.addOrderLine(cart.getItems(), oid);
 			}
 		} catch (Exception e) {
  			// TODO: handle exception
